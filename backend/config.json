@@ -1,0 +1,15 @@
+{
+    "database": {
+        "host": "cluster0.stypi.mongodb.net",
+        "port": 27017,
+        "username": "dev",
+        "password": "sanjadev1",
+        "dbname": "finalProject"
+    },
+    "auth": {
+        "jwt_key": "secret_key123"
+    },
+    "ports": {
+        "users": 3001
+    }
+}

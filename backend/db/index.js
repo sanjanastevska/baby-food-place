@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-// da se implementira config file
+const config = require('../config/index.js');
 
-const host = config.dasekreira;
-const port = config.dasekreira;
-const username = config.dasekreira;
-const password = config.dasekreira;
-const dbname = config.dasekreira;
+const host = config.get('database').host;
+const username = config.get('database').username;
+const password = config.get('database').password;
+const dbname = config.get('database').dnname;
 
 let DSN = `mongodb+srv://${username}:${password}@${host}/${dbname}?retryWrites=true&w=majority`;
 
@@ -17,5 +16,5 @@ mongoose.connect(DSN, {
     if(err) {
         return console.log('Could not connect to DB: ', err);
     }
-    console.log('DB connected successfully');
+    console.log('MongoDB connected successfully...');
 });
