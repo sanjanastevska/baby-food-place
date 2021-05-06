@@ -1,0 +1,23 @@
+{
+  "name": "baby-food-place",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjanastevska/baby-food-place.git"
+  },
+  "author": "Sanja Nastevska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanjanastevska/baby-food-place/issues"
+  },
+  "homepage": "https://github.com/sanjanastevska/baby-food-place#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7"
+  }
+}
