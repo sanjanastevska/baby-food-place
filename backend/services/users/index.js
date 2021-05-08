@@ -1,23 +1,22 @@
 require('../../db');
 const express = require('express');
-const jwt = require('express-jwt');
-const userRouter = require('./router.js');
+// const jwt = require('express-jwt');
+const userRouter = require('./router');
 const config = require('../../config/index.js');
 
 const api = express();
 
 api.use(express.json());
-app.use(express.urlencoded({extended:true}));
 
-api.use(jwt({
-  secret: config.get('auth').jwt_key,
-  algorithms: ['HS256']
-}).unless({
-  path: [
-    'api/users/register',
-    'api/users/login'
-  ]
-}));
+// api.use(jwt({
+//   secret: config.get('auth').jwt_key,
+//   algorithms: ['HS256']
+// }).unless({
+//   path: [
+//     'api/users/register',
+//     'api/users/login'
+//   ]
+// }));
 
 api.use((err, req, res, next) => {
   if(err.name === 'UnauthorizedError') {
@@ -28,7 +27,7 @@ api.use((err, req, res, next) => {
   }
 });
 
-app.use('/api/users', userRouter);
+api.use('/api/users', userRouter);
 
 api.listen(config.get('ports').users, err => {
     if (err) {

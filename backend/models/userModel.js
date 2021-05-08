@@ -1,22 +1,23 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: ['Firstname is a required field']
+        required: [true, 'Firstname is a required field']
     },
     lastName: {
         type: String,
-        required: ['Lastname is a required field']
+        required: [true, 'Lastname is a required field']
     },
     email: {
         type: String,
         unique: true,
-        required: ['Email is a required field']
+        required: [true, 'Email is a required field']
     },
     password: {
         type: String,
-        required: ['Password is a required field']
+        minlength: [8, 'At least 8 chars'],
+        required: [true, 'Password is a required field']
     },
     avatar: {
         type: String 
@@ -29,4 +30,6 @@ const userSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = { User };
+
