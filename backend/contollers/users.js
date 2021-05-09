@@ -141,11 +141,47 @@ const login = async (req, res, next) => {
     await next;
 };
 
+const update = async(req, res, next) => {
+    try {
+        await User.findByIdAndUpdate({ _id: req.params.id}, req.body);
+        res.status(200).send({
+            error: false,
+            message: 'User is updated!'
+        });
+    } catch(err) {
+        res.status(404).send({
+            error: true,
+            message:err.message
+        });
+    }
+    await next;
+};
+
+const del = async (req, res, next) => {
+    try {
+        await User.deleteOne({ _id: req.params.id })
+        res.status(200).send({
+            error: false,
+            message: `User Removed!!`
+        });
+    }
+    catch(err) {
+        res.status(404).send({
+            error: true,
+            message:err.message
+          })
+    }
+    await next;
+}
+
 
 module.exports = {
     register,
     activateAccount ,
-    login
+    login,
+    // logout,
+    update,
+    del
 };
 
 
