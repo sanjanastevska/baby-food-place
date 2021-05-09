@@ -10,5 +10,7 @@ const generateToken = user => {
         { expiresIn: '30d' }
     );
 };
-
-module.exports = generateToken;
+  
+module.exports = {
+    generateToken
+};
