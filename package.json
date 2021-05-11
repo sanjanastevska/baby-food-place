@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/services/recipes/index.js "
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-users": "nodemon backend/services/users",
+    "start-recipes": "nodemon backend/services/recipes",
+    "start-proxy": "nodemon backend/services/proxy",
+    "start": "concurrently --kill-others \"npm run start-users\" \"npm run start-recipes\" \"npm run start-proxy\""
   },
   "repository": {
     "type": "git",
@@ -19,6 +23,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "express-http-proxy": "^1.6.2",
     "express-jwt": "^6.0.0",
     "form-data": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -26,5 +31,8 @@
     "mailgun.js": "^3.3.2",
     "mongoose": "^5.12.7",
     "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "concurrently": "^6.1.0"
   }
 }

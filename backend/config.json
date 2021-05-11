@@ -18,6 +18,7 @@
         "jwt_key": "secret_key123"
     },
     "ports": {
+        "proxy": 3000,
         "users": 3001,
         "recipes": 3002
     }
