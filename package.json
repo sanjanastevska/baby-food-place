@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/services/users/index.js "
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/services/recipes/index.js "
   },
   "repository": {
     "type": "git",

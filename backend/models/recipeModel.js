@@ -6,10 +6,10 @@ const recipeSchema = mongoose.Schema({
         unique: true,
         required: true
     },
-    image: {
-        type: String,
-        required: true
-    },
+    // image: {
+    //     type: String,
+    //     // required: true
+    // },
     category: {
         type: String,
         required: true
@@ -30,7 +30,10 @@ const recipeSchema = mongoose.Schema({
         type: String,
         required: true
     },
-
+    rating: {
+        type: Number,
+        required: true
+    }
 }, {
     timestamps: true
 });
