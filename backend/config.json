@@ -20,6 +20,7 @@
     "ports": {
         "proxy": 3000,
         "users": 3001,
-        "recipes": 3002
+        "recipes": 3002,
+        "storage": 3003
     }
 }
