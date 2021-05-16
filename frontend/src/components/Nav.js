@@ -17,7 +17,7 @@ export function Nav() {
             </ul>
             <div>
                 <Link to="/login"><button className="login-btn">LOG IN</button></Link>
-                <span>or</span>
+                <span style={{marginRight: '17px'}}>or</span>
                 <Link to="/register"><button className="register-btn">CREATE ACCOUNT</button></Link>
             </div>
         </nav>

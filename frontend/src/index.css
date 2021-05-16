@@ -1,7 +1,8 @@
 .grid-container {
   background-color:#F8F7F2;
   padding: 0;
-  width: 100%;
+  width: 1920px;
+  height: 1080px;
   margin-left: 40px;
   margin-right: 40px;
   font-family: 'Roboto', sans-serif ;
@@ -21,8 +22,11 @@
 
 .logo {
   justify-self: start;
-  margin-left:20px ;
+  width: 177px;
   cursor: pointer;
+  left:338px;
+  height: 58px;
+  margin-left: 337px;
 }
 
 .nav-menu {
@@ -31,8 +35,10 @@
   gap: 10px;
   list-style: none;
   text-align: center;
-  width: 600px;
+  width: 457px;
   justify-content: center;
+  left:654px;
+  height: 24px;
 }
 
 .nav-links {
@@ -49,6 +55,7 @@
 }
 
 .login-btn{
+  font-family: 'Roboto', sans-serif ;
   width: 108px;
   height: 44px;
   left: 1248px;
@@ -57,21 +64,25 @@
   border: 1px solid #A5A5A5;
   cursor: pointer;
   margin-right: 17px;
+  left: 1248px;
+  color: #A5A5A5;
+  font-size: 16px;
 }
 
 .register-btn{
+  font-family: 'Roboto', sans-serif ;
   color: #FFFFFF;
   background-color: #96BB36;
   width: 179px;
   height: 44px;
-  left: 1248px;
+  left: 1405px;
   padding: 8px 20px;
   border-radius: 4px;
   border: 1px solid #097925;
   cursor: pointer;
   text-align: center;
-  margin-left: 17px;
-  margin-right: 17px;
+  margin-right: 337px;
+  font-size: 16px;
 }
 
 
@@ -101,6 +112,7 @@ span {
   color: #96BB36;
   text-align: left;
   font-size: 36px;
+  margin-left: 336px;
 }
 
 .headerOne {
@@ -123,8 +135,22 @@ span {
   height: 156px;
 }
 
+.diff-width{
+  width: 412px;
+  height: 215px;
+  text-align: left;
+  font-family: 'Roboto Slab', serif;
+  color: #A5A5A5;
+  font-size: 20px;
+}
+
 /* Form */
-.form label {
+.form {
+  display: grid;
+  grid-template-columns: 294px 294px ;
+  grid-gap: 33px;
+}
+label {
   text-align: left;
   font-family: 'Roboto Slab', serif;
   color: #F0972A;
@@ -149,6 +175,7 @@ input {
 
 .primary{
   background-color: #96BB36;
+  font-family: 'Roboto', sans-serif ;
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 16px;
@@ -161,22 +188,70 @@ input {
   cursor: pointer;
 }
 
+.register-btn1{
+  font-family: 'Roboto', sans-serif ;
+  color: #FFFFFF;
+  background-color: #96BB36;
+  width: 202px;
+  height: 40px;
+  left: 1405px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  border: 1px solid #097925;
+  cursor: pointer;
+  text-align: center;
+  margin-right: 17px;
+  font-size: 16px;
+}
+
 .row {  
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
+
+.row-2 {  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 .col-1{
+  margin-left: 338px;
   top: 334px;
   flex: 1 1 12rem;
-  margin-right: 120px;
+  margin-right: 144px;
 }
 .col-2{
   top: 340px;
   flex: 3 1 25rem;
-  
 }
+
+ .col-2-1{
+  margin-left: 338px;
+  margin-right: 102px;
+  top: 334px;
+  width: 40%;
+  flex: 1 1 3rem;
+}
+.col-2-2{
+  flex: 3 6 42rem;
+  top: 379px;
+  width: 40%;
+}
+
+.form-1{
+  width: 294px;
+}
+
+/* .col-2-3{
+  top: 379px;
+} * */
+
+
 
 /* @media screen and (max-width: 960px) {
   .navbar {
