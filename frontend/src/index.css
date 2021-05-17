@@ -73,7 +73,7 @@
   font-family: 'Roboto', sans-serif ;
   color: #FFFFFF;
   background-color: #96BB36;
-  width: 179px;
+  width: 180px;
   height: 44px;
   left: 1405px;
   padding: 8px 20px;
@@ -103,6 +103,12 @@
   text-align: center;
 }
 
+.white {
+  height: 8px;
+  width: 8px;
+  background-color: #FFFFFF;
+}
+
 span {
   color: #F0972A;
 }
@@ -113,6 +119,7 @@ span {
   text-align: left;
   font-size: 36px;
   margin-left: 336px;
+  top: 193px;
 }
 
 .headerOne {
@@ -120,6 +127,8 @@ span {
   font-size: 46px;
   color: #626262;
   text-align: left;
+  top: 334px;
+  margin-bottom: 27px;
 }
 
 .orangeText{
@@ -142,6 +151,7 @@ span {
   font-family: 'Roboto Slab', serif;
   color: #A5A5A5;
   font-size: 20px;
+  margin-bottom: 27px;
 }
 
 /* Form */
@@ -224,10 +234,12 @@ input {
   top: 334px;
   flex: 1 1 12rem;
   margin-right: 144px;
+  margin-bottom: 503px;
 }
 .col-2{
   top: 340px;
   flex: 3 1 25rem;
+  margin-bottom: 503px;
 }
 
  .col-2-1{
@@ -236,20 +248,66 @@ input {
   top: 334px;
   width: 40%;
   flex: 1 1 3rem;
+  margin-bottom: 382px;
 }
 .col-2-2{
   flex: 3 6 42rem;
   top: 379px;
   width: 40%;
+  margin-bottom: 382px;
 }
 
-.form-1{
-  width: 294px;
+/* footer */
+.footer {
+  font-family: 'Roboto', sans-serif ;
+  background-color: #626262;
+  color: #FFFFFF;
+  top: 900px;
+  width: 1920px;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* .col-2-3{
-  top: 379px;
-} * */
+.logo-white {
+  justify-self: start;
+  top: 970px;
+  width: 113px;
+  left:338px;
+  height: 37px;
+  margin-left: 337px;
+}
+
+.footer-menu {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: 9px;
+  list-style: none;
+  text-align: center;
+  width: 381px;
+  justify-content: center;
+  left:770px;
+  top: 982px;
+  height: 20px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.footer-list {
+  text-decoration: none;
+  padding: 0.2rem 0.2rem ;
+}
+
+.copyright{
+  width: 115px;
+  height: 38px;
+  top: 970px;
+  margin-right: 332px;
+  font-size: 14px;
+  text-align: right;
+}
+
 
 
 

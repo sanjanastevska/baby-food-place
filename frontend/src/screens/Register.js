@@ -52,7 +52,7 @@ export function Register() {
                 </div>
                 <div className="col-2-2">
                     <form className="form" onSubmit={submitHandler}>
-                        <div className="form-1" >
+                        <div>
                             <div>
                                 <label htmlFor="firstName">First Name</label>
                                 <input
@@ -89,7 +89,7 @@ export function Register() {
                                 <button className="register-btn1" type="submit">CREATE ACCOUNT</button>
                             </div>
                         </div>
-                        <div className="form-1">
+                        <div>
                             <div>
                                 <label htmlFor="lastName">Last Name</label>
                                 <input

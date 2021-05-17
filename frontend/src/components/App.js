@@ -4,6 +4,7 @@ import { Nav } from './Nav';
 import { Home } from '../screens/Home';
 import { Login } from '../screens/Login';
 import { Register } from '../screens/Register';
+import { Footer } from './Footer';
 
 export function App() {
 
@@ -14,24 +15,14 @@ export function App() {
       </header>
       <main>
         <Switch>
-          <Route path="/" component={ Home } exact></Route>
-          <Route path="/login" component={ Login }></Route>
-          <Route path="/register" component={ Register }></Route>
+          <Route path="/" component={Home} exact></Route>
+          <Route path="/login" component={Login}></Route>
+          <Route path="/register" component={Register}></Route>
         </Switch>
       </main>
-      {/* <footer className="row center">
-        <div>
-          <h1>Baby's</h1>
-          <h5>food place</h5>
-        </div>
-        <ul>
-          <li>BREAKFEST</li>
-          <li>BRUNCH</li>
-          <li>LUNCH</li>
-          <li>DINNER</li>
-        </ul>
-        <p>Baby's Food Place copyright © 2021</p>
-      </footer> */}
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
