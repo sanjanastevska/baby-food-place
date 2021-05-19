@@ -308,6 +308,96 @@ input {
   text-align: right;
 }
 
+/* Recipe card */
+.card-container{
+  box-sizing: border-box;
+  left: 336px;
+  width: 373px;
+  height: 428px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 10px 20px #00000012;
+  border: 1px solid #D8D8D8;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.card-container:hover{
+  box-shadow: 0px 18px 20px #00000012;
+}
+
+.recipe-img {
+  width: 373px;
+  height: 234px;
+  border-radius: 5px 5px 0px 0px;
+  background-color: transparent;
+}
+
+.recipe-img:hover,
+.arrows:hover {
+  transition: all 0.3s ease-out;
+}
+
+.recipe-title {
+  top: 534px;
+  margin-left: 25px;
+  height: 26px;
+  font-size: 20px;
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
+  color: #F0972A;
+  text-align: left;
+  text-decoration: none;
+}
+
+.card-text{
+  font-family: 'Roboto', sans-serif ;
+  font-size: 14px;
+  margin-right: 25px;
+  width: 318px;
+  height: 79px;
+  color: #A5A5A5;
+  text-align: left;
+}
+
+.card-info{
+  font-family: 'Roboto', sans-serif ;
+  color: #626262;
+  font-size: 12px;
+  font-weight: bold;
+  list-style: none;
+  text-align: center;
+  justify-content: center;
+;
+}
+
+.card-info li{
+  float: none;
+  display: inline-block;
+}
+.card-info li:nth-child(1),
+.card-info li:nth-child(2),
+.card-info li:nth-child(3),
+.card-info li:nth-child(4),
+.card-info li:nth-child(5),
+.card-info li:nth-child(6){
+  float: left;
+  padding: 5px 5px;
+}
+
+.card-info li:nth-child(7){
+  background-color: #96BB36;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  align-self: center;
+  cursor: pointer;
+  /* float: right; */
+}
+
 
 
 

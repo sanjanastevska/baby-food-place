@@ -5,6 +5,7 @@ import { Home } from '../screens/Home';
 import { Login } from '../screens/Login';
 import { Register } from '../screens/Register';
 import { Footer } from './Footer';
+import { Recipe } from '../screens/Recipe';
 
 export function App() {
 
@@ -16,6 +17,7 @@ export function App() {
       <main>
         <Switch>
           <Route path="/" component={Home} exact></Route>
+          <Route path="/recipes/:id" component={Recipe}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
         </Switch>
