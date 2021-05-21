@@ -65,6 +65,39 @@ export const data = {
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English.",
             "recipe": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English. Quisque blandit mattis risus, sed tincidunt ante finibus non. Nullam sit amet nunc lorem. Mauris lectus erat, accumsan quis nisl vel, feugiat rhoncus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In at euismod leo. Fusce sed volutpat risus, fermentum feugiat enim. Etiam mollis ante quis nisl imperdiet, id commodo ante tincidunt. Duis bibendum scelerisque risus nec consectetur. Vivamus est elit, mollis vel malesuada non, porta id mauris. Quisque a vehicula lorem. Praesent in auctor quam. Etiam magna quam, sollicitudin id nunc eget, porttitor pretium tellus.",
             "rating": 28
+        },
+        {
+            _id: "7",
+            "title": "Schrimp Paela",
+            "image": "/images/schrimp-pasta.jpg",
+            "category": "lunch",
+            "preparationTime":55,
+            "numberPeople": 2,
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English.",
+            "recipe": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English. Quisque blandit mattis risus, sed tincidunt ante finibus non. Nullam sit amet nunc lorem. Mauris lectus erat, accumsan quis nisl vel, feugiat rhoncus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In at euismod leo. Fusce sed volutpat risus, fermentum feugiat enim. Etiam mollis ante quis nisl imperdiet, id commodo ante tincidunt. Duis bibendum scelerisque risus nec consectetur. Vivamus est elit, mollis vel malesuada non, porta id mauris. Quisque a vehicula lorem. Praesent in auctor quam. Etiam magna quam, sollicitudin id nunc eget, porttitor pretium tellus.",
+            "rating": 25
+        },
+        {
+            _id: "8",
+            "title": "Swedish Meatballs",
+            "image": "/images/meatballs.jpg",
+            "category": "brunch",
+            "preparationTime":45,
+            "numberPeople": 4,
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English.",
+            "recipe": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English. Quisque blandit mattis risus, sed tincidunt ante finibus non. Nullam sit amet nunc lorem. Mauris lectus erat, accumsan quis nisl vel, feugiat rhoncus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In at euismod leo. Fusce sed volutpat risus, fermentum feugiat enim. Etiam mollis ante quis nisl imperdiet, id commodo ante tincidunt. Duis bibendum scelerisque risus nec consectetur. Vivamus est elit, mollis vel malesuada non, porta id mauris. Quisque a vehicula lorem. Praesent in auctor quam. Etiam magna quam, sollicitudin id nunc eget, porttitor pretium tellus.",
+            "rating": 29
+        },
+        {
+            _id: "9",
+            "title": "Chicken Brocoli Soup",
+            "image": "/images/soup.jpg",
+            "category": "breakfest",
+            "preparationTime":25,
+            "numberPeople": 4,
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English.",
+            "recipe": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here, content here’, making it look like readable English. Quisque blandit mattis risus, sed tincidunt ante finibus non. Nullam sit amet nunc lorem. Mauris lectus erat, accumsan quis nisl vel, feugiat rhoncus ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In at euismod leo. Fusce sed volutpat risus, fermentum feugiat enim. Etiam mollis ante quis nisl imperdiet, id commodo ante tincidunt. Duis bibendum scelerisque risus nec consectetur. Vivamus est elit, mollis vel malesuada non, porta id mauris. Quisque a vehicula lorem. Praesent in auctor quam. Etiam magna quam, sollicitudin id nunc eget, porttitor pretium tellus.",
+            "rating": 28
         }
     ]
 }

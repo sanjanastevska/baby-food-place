@@ -29,7 +29,7 @@ export function Recipe(props) {
                     <p>{recipe.description}</p>
                     <div className="card-info">
                         <span><img className="time" src="/images/icon_time.svg" alt="time"></img></span>
-                        <span><i>{recipe.preparationTime + "min"}</i></span>
+                        <span><i>{recipe.preparationTime + " min"}</i></span>
                         <span><img className="plate" src="/images/icon_plate.svg" alt="plate"></img></span>
                         <span><i>{recipe.numberPeople + "persons"}</i></span>
                         <span><img className="star" src="/images/icon_star.svg" alt="star"></img></span>
