@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { data } from '../data';
 
 export function Recipe(props) {
     const recipe = data.recipes.find(x => x._id === props.match.params.id);
-    if(!recipe) {
+    
+    if (!recipe) {
         return <div>Recipe not found</div>
     }
     // const recipeDetails = useSelector(state => state.detailsRecipe);
@@ -16,32 +17,35 @@ export function Recipe(props) {
     //     dispatch(detailsRecipe(recipeId));
     // }, [dispatch, recipeId]);
 
+
     return (
-        <div>
-            <h1>{recipe.title}</h1>
-            <div className="row">
-                <div className="recipe-col-1">
-                    <img className="recipe-image" src={recipe.image} alt={recipe.title}></img>
-                    <div className="title">
-                        <h3>Best Served For</h3>
-                        <span className="category">{recipe.category}</span>
+        <div className="recipe-dialog active">
+            <div className="recipe-header">
+                <div className="title">{recipe.title}</div>
+                {/* <button className=".close-btn"> */}
+                    <img className="close" src="/images/icon_close.svg" alt="close"></img>
+                {/* </button> */}
+            </div>
+            <div className="recipe-body">
+                <div className="recipe-left-column">
+                    <img className="recipe-image-small" src={recipe.image} alt={recipe.title}></img>
+                    <div className="serving-info">
+                        <div className="best-served">Best Served For</div>
+                        <div className="category">{recipe.category}</div>
                     </div>
-                    <p>{recipe.description}</p>
-                    <div className="card-info">
-                        <span><img className="time" src="/images/icon_time.svg" alt="time"></img></span>
-                        <span><i>{recipe.preparationTime + " min"}</i></span>
-                        <span><img className="plate" src="/images/icon_plate.svg" alt="plate"></img></span>
-                        <span><i>{recipe.numberPeople + "persons"}</i></span>
-                        <span><img className="star" src="/images/icon_star.svg" alt="star"></img></span>
-                        <span><i>{recipe.rating}</i></span>
-                        <span><img onClick="showMoreHandler" className="arrows" src="/images/icon_arrows_white.svg" alt="arrows"></img></span>
+                    <p className="recipe-discription">{recipe.description}</p>
+                    <div className="info-recipe">
+                        <i><img className="icon" src="/images/icon_time.svg" alt="time"></img>{recipe.preparationTime + " min"}</i>
+                        <i><img className="icon" src="/images/icon_plate.svg" alt="plate"></img>{recipe.numberPeople + " persons"}</i>
+                        <i><img className="icon" src="/images/icon_star.svg" alt="star"></img>{recipe.rating}</i>
                     </div>
                 </div>
-                <div className="recipe-col-2">
-                    <h3>Recipe Details</h3>
-                    <p>{recipe.recipe}</p>
+                <div className="recipe-right-column">
+                    <div className="best-served">Recipe Details</div>
+                    <p className="recipe-recipe-disc">{recipe.recipe}</p>
                 </div>
             </div>
+            <div className="overlay"></div>
         </div>
     )
 };
