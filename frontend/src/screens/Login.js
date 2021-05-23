@@ -28,8 +28,11 @@ export function Login(props) {
     }, [props.history, redirect, userInfo]);
 
     return (
-        <div>
-            <p className="start-main-page">Log In</p>
+        <div className="my-profile">
+            <div className="login-wrapper">
+                <p className="start-main-page">Log In</p>
+                <hr className="hr-login" />
+            </div>
             <div className="row">
                 <div className="col-1">
                     <p className="headerOne"><span className="orangeText">Welcome to </span>Baby's</p>

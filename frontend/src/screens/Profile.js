@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../actions/userActions';
+// import { useDispatch, useSelector } from 'react-redux';
 
-export function Register() {
+
+export function Profile() {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -10,7 +10,7 @@ export function Register() {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [birthday, setBirthday] = useState('');
-
+    const [avatar, setAvatar] = useState('');
     // const redirect = props.location.search
     // ? props.location.search.split('=')[1]
     // : '/';
@@ -18,14 +18,14 @@ export function Register() {
     // const userRegister = useSelector(state => state.userRegister);
     // const { userInfo } = userRegister;
 
-    const dispatch = useDispatch();
-    const submitHandler = e => {
-        e.preventDefault();   //when clicked on the button the form will not be refreshed
-        if (password !== repeatPassword) {
-            alert('Passwords do not match!');
-        }
-        dispatch(register(firstName, lastName, email, password, birthday));
-    };
+    // const dispatch = useDispatch();
+    // const submitHandler = e => {
+    //     e.preventDefault();   //when clicked on the button the form will not be refreshed
+    //     if (password !== repeatPassword) {
+    //         alert('Passwords do not match!');
+    //     }
+    //     dispatch(register(firstName, lastName, email, password, birthday));
+    // };
 
     // useEffect(() => {
     //     if(userInfo) {
@@ -35,26 +35,17 @@ export function Register() {
 
     return (
         <div className="my-profile">
-            <div className="register-wrapper">
-                <p className="register-header">Create Account</p>
-                <hr className="hr-register" />
+            <div className="start-wrapper">
+                <p className="my-profile-text">My Profile</p>
+                <hr/>
             </div>
-            <div className="row-2">
-                <div className="col-2-1">
-                    <p className="headerOne"><span className="orangeText">Create your </span><br />account</p>
-                    <p className="diff-width">
-                        All the Lorem Ipsum generators on the <br />
-                        Internet tend to repeat predefined chunks <br />
-                        as necessary, making this the first true <br />
-                        generator on the Internet. It uses a <br />
-                        dictionary of over 200 Latin words,<br />
-                        combined with a handful of model <br />
-                        sentence structures, to generate Lorem <br />
-                        Ipsum which looks reasonable.
-                    </p>
+            <div className="profile-container"> 
+                <div className="profile-image-wrapper">
+                    <img src="images/profile2.jpg" alt="avatar"></img>
+                    <button className="change-avatar-btn">CHANGE AVATAR</button>
                 </div>
                 <div className="col-2-2">
-                    <form className="form" onSubmit={submitHandler}>
+                    <form className="form">
                         <div>
                             <div>
                                 <label htmlFor="firstName">First Name</label>
@@ -89,7 +80,7 @@ export function Register() {
                             <br />
                             <div>
                                 <label />
-                                <button className="register-btn1" type="submit">CREATE ACCOUNT</button>
+                                <button className="save-btn" type="submit">SAVE</button>
                             </div>
                         </div>
                         <div>

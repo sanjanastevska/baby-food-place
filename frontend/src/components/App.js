@@ -6,8 +6,9 @@ import { Login } from '../screens/Login';
 import { Register } from '../screens/Register';
 import { Footer } from './Footer';
 import { Recipe } from '../screens/Recipe';
-import { Link } from 'react-router-dom';
-import { RecipeDialog } from './RecipeDialog';
+// import { Link } from 'react-router-dom';
+// import { RecipeDialog } from './RecipeDialog';
+import { Profile } from '../screens/Profile';
 
 export function App() {
 
@@ -22,6 +23,7 @@ export function App() {
           <Route path="/recipes/:id" component={Recipe}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
+          <Route path="/profile" component={Profile}></Route>
         </Switch>
         {/* <RecipeDialog trigger = {trigger} onClose={onClose}/> */}
       </main>
