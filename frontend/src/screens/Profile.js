@@ -37,7 +37,7 @@ export function Profile() {
         <div className="my-profile">
             <div className="start-wrapper">
                 <p className="my-profile-text">My Profile</p>
-                <hr/>
+                <hr />
             </div>
             <div className="profile-container"> 
                 <div className="profile-image-wrapper">
