@@ -43,7 +43,7 @@ export function Recipes(props) {
             <div className="recipes-wrapper">
                 <p className="my-recipes-text">My Recipes</p>
                 <hr className="recipes-hr"/>
-                <img className="icon-plus" src="images/icon_plus_white.svg" alt="plus"></img>
+                <img className="icon-plus-back" src="images/icon_plus_white.svg" alt="plus"></img>
             </div>
             <table className="recipes-table">
                 <thead>

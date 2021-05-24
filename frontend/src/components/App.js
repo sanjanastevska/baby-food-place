@@ -10,6 +10,7 @@ import { Recipe } from '../screens/Recipe';
 // import { RecipeDialog } from './RecipeDialog';
 import { Profile } from '../screens/Profile';
 import { Recipes } from '../screens/Recipes';
+import { CreateRecipe } from '../screens/CreateRecipe';
 
 export function App() {
 
@@ -26,6 +27,7 @@ export function App() {
           <Route path="/register" component={Register}></Route>
           <Route path="/profile" component={Profile}></Route>
           <Route path="/recipes" component={Recipes}></Route>
+          <Route path="/create-recipe" component={CreateRecipe}></Route>
         </Switch>
         {/* <RecipeDialog trigger = {trigger} onClose={onClose}/> */}
       </main>
