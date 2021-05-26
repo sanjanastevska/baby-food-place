@@ -47,10 +47,10 @@ export function CreateRecipe() {
                             />
                         </div>
                         <div>
-                            <label className="recipe-image-text" htmlFor="No.people">No. People</label>
+                            <label className="recipe-image-text" htmlFor="Nopeople">No. People</label>
                             <input
                                 type="number"
-                                id="No.people"
+                                id="Nopeople"
                                 placeholder="4"
                                 required
                             // onChange={e => setFirstName(e.target.value)}
@@ -59,7 +59,7 @@ export function CreateRecipe() {
                     </div>
                     <div>
                         <label className="recipe-image-text" htmlFor="desc">Short Description</label>
-                        <input
+                        <textarea
                             type="text"
                             id="desc"
                             placeholder="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage"
@@ -71,10 +71,10 @@ export function CreateRecipe() {
                 </div>
                 <div className="recipe-info-wrapper-two">
                     <label className="recipe-image-text" htmlFor="recipe">Short Description</label>
-                    <input
+                    <textarea
                         type="text"
                         id="recipe"
-                        placeholder="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage"
+                        placeholder="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures"
                         required
                     // onChange={e => setFirstName(e.target.value)}
                     />
