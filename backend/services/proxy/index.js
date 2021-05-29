@@ -7,6 +7,7 @@ const app = express();
 app.use('/api/users', proxy(
     `http://localhost:${config.get('ports').users}`,
     { 
+        limit: '5mb',
         proxyReqPathResolver: (req) => {
             return `http://localhost:${config.get('ports').users}/users${req.url}`
         }
@@ -31,7 +32,7 @@ app.use('/api/recipes', proxy(
 //     }
 // ));
 
-// app.use('/', express.static(`${__dirname}/../../public/build`));
+app.use('/', express.static(`${__dirname}/../../public/build`));
 
 const PORT = process.env.PORT || config.get('ports').proxy;
 

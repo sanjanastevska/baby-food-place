@@ -18,6 +18,7 @@
   font-size: 18px;
   margin-top: 12px;
   margin-bottom: 100px;
+  left: 336px;
 }
 
 .logo {
@@ -41,11 +42,32 @@
   height: 24px;
 }
 
+.nav-menu-login {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 5px;
+  list-style: none;
+  text-align: center;
+  justify-content: center;
+  height: 24px;
+  margin-right: 337px;
+}
+
 .nav-links {
   color: #A5A5A5;
   text-decoration: none;
   text-transform: uppercase;
   padding: 0.5rem 1rem ;
+}
+
+.nav-links-right {
+  color: #A5A5A5;
+  text-decoration: underline;
+  text-decoration-color: #A5A5A5;
+  text-decoration-thickness: 3px;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem ;
+  margin-bottom: 0.5px;
 }
 
 .nav-links:hover{
@@ -54,11 +76,26 @@
   border-radius: 4px;
 }
 
+.link-1 {
+  color: #96BB36;
+}
+
+.link-2 {
+  color:  #F0972A;
+}
+
+.underline{
+  border: 2px solid #A5A5A5;
+  width: 103px;
+  height: 0px;
+  display: block;
+  top: 92px;
+}
+
 .login-btn{
   font-family: 'Roboto', sans-serif ;
   width: 108px;
   height: 44px;
-  left: 1248px;
   padding: 8px 20px;
   border-radius: 4px;
   border: 1px solid #A5A5A5;
@@ -101,6 +138,9 @@
   content: "";
   justify-content: center;
   text-align: center;
+}
+.black{
+  background-color: #626262;
 }
 
 .white {
@@ -647,14 +687,22 @@ hr{
 .profile-container {
   display: grid;
   grid-template-columns: 174px 625px ;
-  gap: 122px;
+  gap: 97px;
   margin-top: 90px;
+  margin-bottom: 228px;
 }
 
 .profile-image-wrapper{
-  width: 103px;
-  height: 103px;
+  width: 174px;
+  text-align: center;
+  margin-top: 31px;
+}
+
+.avatar{
+  justify-content: center;
   box-shadow: 0px 3px 6px #00000029;
+  width: 123px;
+  height: 123px;
   background-color: transparent;
 }
 
@@ -670,6 +718,96 @@ hr{
   font-family: 'Roboto', sans-serif ;
 }
 
+.content{
+  display: grid;
+  grid-template-columns: 294px 294px;
+  gap: 33px;
+}
+
+#firstName{
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 294px;
+  background-color: #F0EFEA;
+  border: 1px solid #A5A5A5;
+  border-radius: 5px;
+  color: #A5A5A5;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+#lastName{
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 294px;
+  height: 40px;
+  background-color: #F0EFEA;
+  border: 1px solid #A5A5A5;
+  border-radius: 5px;
+  color: #A5A5A5;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+#email{
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 294px;
+  height: 40px;
+  background-color: #F0EFEA;
+  border: 1px solid #A5A5A5;
+  border-radius: 5px;
+  color: #A5A5A5;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+#password{
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 294px;
+  height: 40px;
+  background-color: #F0EFEA;
+  border: 1px solid #A5A5A5;
+  border-radius: 5px;
+  color: #A5A5A5;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+#repeatPassword{
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 294px;
+  height: 40px;
+  background-color: #F0EFEA;
+  border: 1px solid #A5A5A5;
+  border-radius: 5px;
+  color: #A5A5A5;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+#birthday{
+  padding: 10px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 294px;
+  height: 40px;
+  background-color: #F0EFEA;
+  border: 1px solid #A5A5A5;
+  border-radius: 5px;
+  color: #A5A5A5;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+
 .save-btn{
   width: 124px;
   height: 40px;
@@ -678,10 +816,16 @@ hr{
   color: #FFFFFF;
   text-align: center;
   font-size: 16px;
-  box-shadow: 0px 3px 6px #96BB36;
-  transition: all 0.3s ease-out;
   font-family: 'Roboto', sans-serif ;
   border-radius: 5px;
+  
+}
+
+.change-avatar-btn:hover,
+.save-btn:hover{
+  box-shadow: 0px 3px 6px #00000029;;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
 }
 
 /* My recipes  */

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { data } from '../data';
 
-export function CreateRecipe() {
+export function CreateRecipe(props) {
+    const recipe = data.recipes.find(props.match.params.id);
 
     return (
         <div className="my-profile">
@@ -9,10 +11,10 @@ export function CreateRecipe() {
                 <hr className="recipes-hr" />
                 <img className="icon-plus-back" src="images/icon_back_white.svg" alt="back"></img>
             </div>
-            <form className="form-recipe-container">
+            <form className="form-recipe-container" key={recipe._id}>
                 <div className="recipe-image-wrapper">
                     <label className="recipe-image-text" htmlFor="image">Recipe Image</label>
-                    <img src="/images/pizza-beer.jpg" alt="Homemade Pizza" className="small-image"></img>
+                    <img src={recipe.image} alt={recipe.title} className="small-image"></img>
                     <button className="upload-btn">UPLOAD IMAGE</button>
                 </div>
                 <div className="recipe-info-wrapper-one">
@@ -21,7 +23,7 @@ export function CreateRecipe() {
                         <input
                             type="text"
                             id="recipeTitle"
-                            placeholder="Homemade Pizza"
+                            placeholder={recipe.title}
                             required
                         // onChange={e => setFirstName(e.target.value)}
                         />
@@ -41,7 +43,7 @@ export function CreateRecipe() {
                             <input
                                 type="number"
                                 id="prepTime"
-                                placeholder="45"
+                                placeholder={recipe.preparationTime}
                                 required
                             // onChange={e => setFirstName(e.target.value)}
                             />
@@ -51,7 +53,7 @@ export function CreateRecipe() {
                             <input
                                 type="number"
                                 id="Nopeople"
-                                placeholder="4"
+                                placeholder={recipe.numberPeople}
                                 required
                             // onChange={e => setFirstName(e.target.value)}
                             />
@@ -62,7 +64,7 @@ export function CreateRecipe() {
                         <textarea
                             type="text"
                             id="desc"
-                            placeholder="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage"
+                            placeholder={recipe.description}
                             required
                         // onChange={e => setFirstName(e.target.value)}
                         />
@@ -74,7 +76,7 @@ export function CreateRecipe() {
                     <textarea
                         type="text"
                         id="recipe"
-                        placeholder="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures"
+                        placeholder={recipe.recipe}
                         required
                     // onChange={e => setFirstName(e.target.value)}
                     />

@@ -11,7 +11,7 @@ export function Login(props) {
 
     const redirect = props.location.search
         ? props.location.search.split('=')[1]
-        : '/';
+        : '/profile';
 
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;

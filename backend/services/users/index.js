@@ -1,5 +1,6 @@
 require('../../db');
 const express = require('express');
+const cors = require('cors');
 // const jwt = require('express-jwt');
 const userRouter = require('./router');
 const config = require('../../config/index.js');
@@ -18,15 +19,15 @@ api.use(express.json());
 //   ]
 // }));
 
-api.use((err, req, res, next) => {
-  if(err.name === 'UnauthorizedError') {
-    res.status(401).send({
-      error: true,
-      message: 'You need to log in in order to perform this action'
-    });
-  }
-});
-
+// api.use((err, req, res, next) => {
+//   if(err.name === 'UnauthorizedError') {
+//     res.status(401).send({
+//       error: true,
+//       message: 'You need to log in in order to perform this action'
+//     });
+//   }
+// });
+api.use(cors());
 api.use('/api/users', userRouter);
 
 api.listen(config.get('ports').users, err => {
