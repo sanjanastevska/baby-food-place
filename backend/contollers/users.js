@@ -144,10 +144,11 @@ const login = async (req, res, next) => {
 
 const update = async(req, res, next) => {
     try {
-        await User.findByIdAndUpdate({ _id: req.params.id}, req.body);
+        const user = await User.findByIdAndUpdate({ _id: req.params.id}, req.body);
         res.status(200).send({
             error: false,
-            message: 'User is updated!'
+            message: 'User is updated!',
+            user
         });
     } catch(err) {
         res.status(404).send({

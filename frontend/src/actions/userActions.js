@@ -81,8 +81,10 @@ export const updateUser = (user) => async(dispatch, getState) => {
     const {
         userLogin: { userInfo } 
     } = getState();
+
+
     try  {
-        const { data } = await Axios.patch(`/api/users/${user.id}`, user, {
+        const { data } = await Axios.patch(`http://localhost:9001/api/users/${userInfo.user._id}`, user, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`
             }

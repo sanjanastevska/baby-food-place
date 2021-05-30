@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 export function Profile() {
-    
+
     const userStatus = useSelector(state => state.userLogin);
     const { userInfo } = userStatus;
 
@@ -19,26 +19,26 @@ export function Profile() {
     const dispatch = useDispatch();
     const submitHandler = e => {
         e.preventDefault();
-        // if (password !== repeatPassword) {
-        //     alert('Passwords do not match!')
-        // }
-        // dispatch(updateUser({
-        //     userId: user._id,
-        //     firstName, lastName, email, password, birthday, avatar
-        // }));
+        if (password !== repeatPassword) {
+            alert('Passwords do not match!')
+        }
+        dispatch(updateUser({
+            userId: userInfo.user._id,
+            firstName, lastName, email, password, birthday, 
+        }));
     };
 
-//     useEffect(() => {
-//         // setFirstName(firstName);
-//         // setLastName(lastName);
-//         // setEmail(email);
-//         // setFirstName(firstName);
-//         // setPassword(password);
-//         // setRepeatPassword(repeatPassword);
-//         // setBirthday(birthday);
-//         // setAvatar(avatar);
+    useEffect(() => {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setFirstName(firstName);
+        setPassword(password);
+        setRepeatPassword(repeatPassword);
+        setBirthday(birthday);
+        // setAvatar(avatar);
+    }, [dispatch, userInfo._id]);  //koga user od null preminuva vo objekt useEfekt uste ednas ranuva
 
-//     }, [dispatch, userInfo._id]);  //koga user od null preminuva vo objekt useEfekt uste ednas ranuva
     return (
         <div className="my-profile">
             <div className="start-wrapper">
@@ -80,7 +80,6 @@ export function Profile() {
                                 type="password"
                                 id="password"
                                 placeholder="*****"
-                                required
                                 onChange={e => setPassword(e.target.value)}
                             />
                         </div>
@@ -108,7 +107,6 @@ export function Profile() {
                                 type="date"
                                 id="birthday"
                                 placeholder="mm/dd/yyyy"
-                                required
                                 value={birthday}
                                 onChange={e => setBirthday(e.target.value)}
                             />
@@ -119,7 +117,6 @@ export function Profile() {
                                 type="password"
                                 id="repeatPassword"
                                 placeholder="*****"
-                                required
                                 onChange={e => setRepeatPassword(e.target.value)}
                             />
                         </div>
