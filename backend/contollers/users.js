@@ -122,7 +122,8 @@ const login = async (req, res, next) => {
                 res.status(201).send({
                     error: false,
                     message: 'You are logged in. JWT successfully generated',
-                    token: generateToken(user)
+                    token: generateToken(user),
+                    user
                 });
                 return;
             }
@@ -157,31 +158,13 @@ const update = async(req, res, next) => {
     await next;
 };
 
-const del = async (req, res, next) => {
-    try {
-        await User.deleteOne({ _id: req.params.id })
-        res.status(200).send({
-            error: false,
-            message: `User Removed!!`
-        });
-    }
-    catch(err) {
-        res.status(404).send({
-            error: true,
-            message:err.message
-          })
-    }
-    await next;
-}
 
 
 module.exports = {
     register,
     activateAccount ,
     login,
-    // logout,
-    update,
-    del
+    update
 };
 
 

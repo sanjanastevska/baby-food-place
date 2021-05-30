@@ -1,60 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { getUser, updateUser } from '../actions/userActions';
+import { updateUser } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
 export function Profile() {
+    
+    const userStatus = useSelector(state => state.userLogin);
+    const { userInfo } = userStatus;
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
-    const [birthday, setBirthday] = useState('');
-    const [avatar, setAvatar] = useState('');
-    // const redirect = props.location.search
-    // ? props.location.search.split('=')[1]
-    // : '/';
-
-    const userLogin = useSelector(state => state.userLogin);
-    const { userInfo } = userLogin;
-    const getUserDetails = useSelector(state => state.getUser);
-    const { user } = getUserDetails;
-
-    // const handleLogout = () => {
-    //     dispatch(logout());
-    //     props.history.push("/signin");
-    // dispatch(update({ userId: userInfo._id, email, name, password }))
-    //   }
+    const [firstName, setFirstName] = useState(userInfo.user.firstName);
+    const [lastName, setLastName] = useState(userInfo.user.lastName);
+    const [email, setEmail] = useState(userInfo.user.email);
+    const [password, setPassword] = useState(userInfo.user.password);
+    const [repeatPassword, setRepeatPassword] = useState(userInfo.user.repeatPassword);
+    const [birthday, setBirthday] = useState(userInfo.user.birthday);
+    // const [avatar, setAvatar] = useState('');
 
     const dispatch = useDispatch();
     const submitHandler = e => {
         e.preventDefault();
-        if (password !== repeatPassword) {
-            alert('Passwords do not match!')
-        }
-        dispatch(updateUser({
-            userId: user._id,
-            firstName, lastName, email, password, birthday, avatar
-        }));
+        // if (password !== repeatPassword) {
+        //     alert('Passwords do not match!')
+        // }
+        // dispatch(updateUser({
+        //     userId: user._id,
+        //     firstName, lastName, email, password, birthday, avatar
+        // }));
     };
 
-    useEffect(() => {
-        // if user is null
-        if (!user) {
-            dispatch(getUser(userInfo._id));
-        }
-        setFirstName(firstName);
-        setLastName(lastName);
-        setEmail(email);
-        setFirstName(firstName);
-        setPassword(password);
-        setRepeatPassword(repeatPassword);
-        setBirthday(birthday);
-        setAvatar(avatar);
+//     useEffect(() => {
+//         // setFirstName(firstName);
+//         // setLastName(lastName);
+//         // setEmail(email);
+//         // setFirstName(firstName);
+//         // setPassword(password);
+//         // setRepeatPassword(repeatPassword);
+//         // setBirthday(birthday);
+//         // setAvatar(avatar);
 
-    }, [dispatch, userInfo._id, user]);  //koga user od null preminuva vo objekt useEfekt uste ednas ranuva
-
+//     }, [dispatch, userInfo._id]);  //koga user od null preminuva vo objekt useEfekt uste ednas ranuva
     return (
         <div className="my-profile">
             <div className="start-wrapper">
@@ -97,7 +81,6 @@ export function Profile() {
                                 id="password"
                                 placeholder="*****"
                                 required
-                                value={password}
                                 onChange={e => setPassword(e.target.value)}
                             />
                         </div>
@@ -137,7 +120,6 @@ export function Profile() {
                                 id="repeatPassword"
                                 placeholder="*****"
                                 required
-                                value={repeatPassword}
                                 onChange={e => setRepeatPassword(e.target.value)}
                             />
                         </div>

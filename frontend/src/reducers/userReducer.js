@@ -2,9 +2,7 @@ import {
     USER_UPDATE_FAIL,
     USER_UPDATE_REQUEST,
     USER_UPDATE_SUCCESS,
-    USER_GET_FAIL,
-    USER_GET_SUCCESS,
-    USER_GET_REQUEST,
+
     USER_LOGIN_FAIL,
     USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
@@ -47,24 +45,6 @@ export const userRegisterReducer = (state = {}, action) => {
     }
 };
 
-export const getUserReducer = (state = {}, action) => {
-    switch(action.type) {
-        case USER_GET_REQUEST:
-            return { ...state };
-        case USER_GET_SUCCESS:
-            return {
-                ...state,
-                user: action.payload
-            };
-        case USER_GET_FAIL:
-            return {
-                ...state,
-                error: action.payload
-            };
-        default:
-            return state;
-    }
-};
 
 export const updateUserReducer = (state = {}, action) => {
     switch(action.type) {

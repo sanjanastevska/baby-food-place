@@ -3,9 +3,6 @@ import {
     USER_UPDATE_FAIL,
     USER_UPDATE_SUCCESS,
     USER_UPDATE_REQUEST,
-    USER_GET_FAIL,
-    USER_GET_SUCCESS,
-    USER_GET_REQUEST,
     USER_LOGIN_FAIL,
     USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
@@ -73,31 +70,6 @@ export const logout = () => dispatch => {
     document.location.href = '/login';
 }
 
-//get user
-export const getUser = userId => async(dispatch, getState) => {
-    dispatch({
-        type: USER_GET_REQUEST,
-        payload: userId
-    });
-    const {
-        userLogin: {userInfo},
-    } = getState();
-    try {
-        const { data } = await Axios.get(`/api/users/${userId}`, {
-            headers: { Authorization: `Bearer ${userInfo?.token}`}
-        });
-        dispatch({
-            type: USER_GET_SUCCESS,
-            payload: data
-        });
-
-    } catch(err) {
-        dispatch({
-            type: USER_GET_FAIL,
-            payload: err.message
-        });
-    }
-};
 
 // EDIT USER    
 export const updateUser = (user) => async(dispatch, getState) => {
