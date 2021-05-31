@@ -23,7 +23,7 @@ export const register = (firstName, lastName, email, password, birthday) => asyn
         }
     });
     try {
-        const { data } = await Axios.post('/api/users/register', { firstName, lastName, email, password, birthday });
+        const { data } = await Axios.post('http://localhost:9001/api/users/register', { firstName, lastName, email, password, birthday });
         dispach({
             type: USER_REGISTER_SUCCESS,
             payload: data

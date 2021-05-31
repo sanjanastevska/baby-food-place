@@ -144,6 +144,9 @@ const login = async (req, res, next) => {
 
 const update = async(req, res, next) => {
     try {
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = bcrypt.hashSync(req.body.password, salt);
+
         const user = await User.findByIdAndUpdate({ _id: req.params.id}, req.body);
         res.status(200).send({
             error: false,
