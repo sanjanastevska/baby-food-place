@@ -12,7 +12,7 @@ export const listRecipes = () => async(dispatch) => {
         type: RECIPE_LIST_REQUEST
     });
     try {
-        const { data } = await Axios.get('/api/recipes');
+        const { data } = await Axios.get('http://localhost:9002/api/recipes');
         dispatch({
             type: RECIPE_LIST_SUCCESS,
             payload: data
@@ -25,18 +25,19 @@ export const listRecipes = () => async(dispatch) => {
     }
 };
 
-//get a recipe by it's id from backend and updte redux store 
+//get a recipe by it's id from backend  
 export const detailsRecipe = recipeId => async(dispatch) => {
     dispatch({
         type: RECIPE_DETAILS_REQUEST,
         payload: recipeId
     });
     try {
-        const { data } = await Axios.get(`/api/recipes/${recipeId}`);
+        const { data } = await Axios.get(`http://localhost:9002/api/recipes/${recipeId}`);
         dispatch({
             type: RECIPE_DETAILS_SUCCESS,
-            payload: data
+            payload: data.recipe
         });
+        
     } catch(err) {
         dispatch({
             type: RECIPE_DETAILS_FAIL,

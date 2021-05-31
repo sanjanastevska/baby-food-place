@@ -1,5 +1,6 @@
 require('../../db');
 const express = require('express');
+const cors = require('cors');
 const recipeRouter = require('./router');
 const config = require('../../config/index.js');
 
@@ -15,7 +16,7 @@ api.use(express.json());
 //     });
 //   }
 // });
-
+api.use(cors());
 api.use('/api/recipes', recipeRouter);
 
 api.listen(config.get('ports').recipes, err => {

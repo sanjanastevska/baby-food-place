@@ -18,7 +18,7 @@ export const recipesListReducer = ( state = initialState, action) => {
         case RECIPE_LIST_SUCCESS:
             return {
                 ...state,
-                recipes: action.payload
+                recipes: action.payload.recipes
             };
         case RECIPE_LIST_FAIL:
             return {

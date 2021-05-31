@@ -13,7 +13,7 @@ export function Profile() {
     const [email, setEmail] = useState(userInfo.user.email);
     const [password, setPassword] = useState(userInfo.user.password);
     const [repeatPassword, setRepeatPassword] = useState(userInfo.user.repeatPassword);
-    const [birthday, setBirthday] = useState(userInfo.user.birthday);
+    const [birthday, setBirthday] = useState(userInfo.user.dateOfBirth);
     // const [avatar, setAvatar] = useState('');
 
     const dispatch = useDispatch();
@@ -104,7 +104,7 @@ export function Profile() {
                         <div>
                             <label htmlFor="birthday">Birthday</label>
                             <input
-                                type="date"
+                                type="text"
                                 id="birthday"
                                 placeholder="mm/dd/yyyy"
                                 value={birthday}

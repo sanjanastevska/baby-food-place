@@ -1,29 +1,25 @@
-import React, { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import { data } from '../data';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { detailsRecipe } from '../actions/recipeActions';
+
 
 export function Recipe(props) {
-    const recipe = data.recipes.find(x => x._id === props.match.params.id);
+    const recipeId = props.match.params.id;
+    const recipeDetails = useSelector(state => state.detailsRecipe);
+    const { recipe } = recipeDetails;
     
-    if (!recipe) {
-        return <div>Recipe not found</div>
-    }
-    // const recipeDetails = useSelector(state => state.detailsRecipe);
-    // const { recipe } = recipeDetails;
-    // const recipeId = props.match.params.id;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(detailsRecipe(recipeId));
+    }, [dispatch, recipeId]);
 
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(detailsRecipe(recipeId));
-    // }, [dispatch, recipeId]);
-
-
+    
     return (
         <div className="recipe-dialog active">
             <div className="recipe-header">
                 <div className="title">{recipe.title}</div>
                 {/* <button className=".close-btn"> */}
-                    <img className="close" src="/images/icon_close.svg" alt="close"></img>
+                    <img className="close" src="/images/icon_close.svg" alt="close" onClick='{handleClose}'></img>
                 {/* </button> */}
             </div>
             <div className="recipe-body">
