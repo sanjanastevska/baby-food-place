@@ -27,8 +27,8 @@ export function App() {
           <Route path="/register" component={Register}></Route>
           <Route path="/profile" component={Profile}></Route>
           <Route path="/recipes" component={Recipes}></Route>
-          {/* <Route path="/create-recipe" component={CreateRecipe}></Route> */}
-          <Route path="/update-recipe/:id" component={CreateRecipe}></Route>
+          <Route path="/create-recipe" component={CreateRecipe}></Route>
+          {/* <Route path="/update-recipe/:id" component={CreateRecipe}></Route> */}
         </Switch>
         {/* <RecipeDialog trigger = {trigger} onClose={onClose}/> */}
       </main>

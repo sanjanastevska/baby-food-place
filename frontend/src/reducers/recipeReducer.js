@@ -1,4 +1,10 @@
 import {
+    RECIPE_CREATE_FAIL,
+    RECIPE_CREATE_REQUEST,
+    RECIPE_CREATE_SUCCESS,
+    RECIPE_DELETE_FAIL,
+    RECIPE_DELETE_REQUEST,
+    RECIPE_DELETE_SUCCESS,
     RECIPE_DETAILS_FAIL,
     RECIPE_DETAILS_REQUEST,
     RECIPE_DETAILS_SUCCESS,
@@ -47,6 +53,51 @@ export const detailsRecipeReducer = (state = { recipe: {}}, action) => {
                 error: action.payload
             };
         default:
-            return state
+            return state;
+    }
+};
+
+export const createRecipeReducer = (state = {}, action) => {
+    switch(action.type) {
+        case RECIPE_CREATE_REQUEST:
+            return {
+                ...state
+            };
+        case RECIPE_CREATE_SUCCESS:
+            return {
+                ...state,
+                success: true,
+                recipe: action.payload
+            };
+        case RECIPE_CREATE_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        // case PRODUCT_CREATE_RESET:
+        //     return {};
+        default:
+            return state;
+    }
+};
+
+export const deleteRecipeReducer = (state = {}, action) => {
+    switch(action.type) {
+        case RECIPE_DELETE_REQUEST:
+            return {
+                ...state
+            };
+        case RECIPE_DELETE_SUCCESS:
+            return {
+                ...state,
+                success: true
+            };
+        case RECIPE_DELETE_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        default:
+            return state;
     }
 };

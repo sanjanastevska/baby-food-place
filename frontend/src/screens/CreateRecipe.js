@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import { data } from '../data';
+import { createRecipe} from '../actions/recipeActions';
 
 export function CreateRecipe(props) {
     const recipe = data.recipes.find(props.match.params.id);
+
+        // const userStatus = useSelector(state => state.userLogin);
+    // const { userInfo } = userStatus;
+
+        // const createdRecipe = useSelector(state => state.createRecipe);
+    // const { recipe } = createdRecipe;
+    // console.log("one recipes:", recipe);
+
+    // const createRecipeHandler = () => {
+    //     dispatch(createRecipe());
+    //     props.history.push(redirect);
+    // };
 
     return (
         <div className="my-profile">
