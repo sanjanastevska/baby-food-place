@@ -11,7 +11,10 @@ import {
     RECIPE_DETAILS_SUCCESS,
     RECIPE_LIST_FAIL,
     RECIPE_LIST_REQUEST,
-    RECIPE_LIST_SUCCESS } from "../constants/recipeConstants";
+    RECIPE_LIST_SUCCESS, 
+    RECIPE_UPDATE_FAIL, 
+    RECIPE_UPDATE_REQUEST,
+    RECIPE_UPDATE_SUCCESS} from "../constants/recipeConstants";
 
 // fetch recipes
 export const listRecipes = () => async(dispatch) => {
@@ -62,6 +65,7 @@ export const createRecipe = () => async (dispatch, getState) => {
     const {
         userLogin: { userInfo } 
     } = getState();
+
     try {
         const { data } = await Axios.post('http://localhost:9002/api/recipes', {},
         {
@@ -75,6 +79,35 @@ export const createRecipe = () => async (dispatch, getState) => {
     } catch(err) {
         dispatch({
             type: RECIPE_CREATE_FAIL,
+            payload: err.message
+        });
+    }
+};
+
+// update recipe 
+export const updateRecipe = recipeId => async(dispatch, getState) => {
+    dispatch({
+        type: RECIPE_UPDATE_REQUEST,
+        payload: recipeId
+    });
+
+    const {
+        userLogin: { userInfo } 
+    } = getState();
+
+    try{
+        const { data } = await Axios.patch(`http://localhost:9002/api/recipes/${recipeId}`,
+        {
+            headers: {Authorization: `Bearer ${userInfo.token}`}
+        });
+        dispatch({
+            type: RECIPE_UPDATE_SUCCESS,
+            payload: data.recipe
+        });
+
+    } catch(err) {
+        dispatch({
+            type: RECIPE_UPDATE_FAIL,
             payload: err.message
         });
     }

@@ -10,7 +10,10 @@ import {
     RECIPE_DETAILS_SUCCESS,
     RECIPE_LIST_FAIL,
     RECIPE_LIST_REQUEST,
-    RECIPE_LIST_SUCCESS } from "../constants/recipeConstants";
+    RECIPE_LIST_SUCCESS, 
+    RECIPE_UPDATE_FAIL, 
+    RECIPE_UPDATE_REQUEST, 
+    RECIPE_UPDATE_SUCCESS} from "../constants/recipeConstants";
 
 const initialState = {
     recipes: []
@@ -76,6 +79,28 @@ export const createRecipeReducer = (state = {}, action) => {
             };
         // case PRODUCT_CREATE_RESET:
         //     return {};
+        default:
+            return state;
+    }
+};
+
+export const updateRecipeReducer = (state = {}, action) => {
+    switch(action.type) {
+        case RECIPE_UPDATE_REQUEST:
+            return {
+                ...state
+            };
+        case RECIPE_UPDATE_SUCCESS:
+            return {
+                ...state,
+                success: true,
+                recipe: action.payload
+            };
+        case RECIPE_UPDATE_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
         default:
             return state;
     }
