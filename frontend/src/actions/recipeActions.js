@@ -90,7 +90,6 @@ export const deleteRecipe = recipeId => async(dispatch, getState) => {
     const {
         userLogin: { userInfo } 
     } = getState();
-
     try {
         await Axios.delete(`http://localhost:9002/api/recipes/${recipeId}`, {
             headers: {Authorization: `Bearer ${userInfo.token}`}
