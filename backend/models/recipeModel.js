@@ -31,8 +31,7 @@ const recipeSchema = mongoose.Schema({
         required: true
     },
     rating: {
-        type: Number,
-        required: true
+        type: Number
     }
 }, {
     timestamps: true

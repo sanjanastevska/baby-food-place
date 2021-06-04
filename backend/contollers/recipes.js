@@ -8,7 +8,7 @@ const newestRecipes = async (_, res, next) => {
             getNewestRecipes
         });
     } catch(err) {
-        res.status(404).send({
+        res.status(500).send({
             error: true,
             message: err.message
         });
@@ -25,7 +25,7 @@ const popularRecipes = async(_, res, next) => {
             getTheMostPopularRecipes
         });
     } catch(err) {
-        res.status(404).send({
+        res.status(500).send({
             error: true,
             message: err.message
         });
@@ -42,7 +42,7 @@ const fetch = async (_, res, next) => {
             recipes
         });
     } catch(err) {
-        res.status(404).send({
+        res.status(500).send({
             error: true,
             message: err.message
         });
@@ -59,7 +59,7 @@ const fetchOne = async (req, res, next) => {
             recipe
         });
     } catch(err) {
-        res.status(404).send({
+        res.status(500).send({
             error: true,
             message: 'Recipe Not Found'
         });
@@ -70,22 +70,23 @@ const fetchOne = async (req, res, next) => {
 const create = async( req, res, next) => {
     try {
         const recipe = await Recipe.findOne({ title: req.body.title });
-        if(recipe) {
+        if (recipe != null) {
             res.status(400).send({
                 error: true,
                 message: `Title ${req.body.title} is already taken.`
             });
         }
 
-        await Recipe.create(req.body);
+        const createdRecipe = await Recipe.create(req.body);
         res.status(200).send({
             error: false,
-            message: 'New Recipe Created!'
+            message: 'New Recipe Created!',
+            createdRecipe
           });
     } catch(err) {
-        res.status(404).send({
+        res.status(500).send({
             error: true,
-            message: err.message
+            message: "Error Creating Recipe"
         });
     }
     await next;
@@ -99,9 +100,9 @@ const update = async (req, res, next) => {
             message: 'Recipe is updated!'
         });
     } catch(err) {
-        res.status(404).send({
+        res.status(500).send({
             error: true,
-            message:err.message
+            message:"Error Updating Recipe"
         });
     }
     await next;
@@ -116,7 +117,7 @@ const del = async (req, res, next) => {
         });
     }
     catch(err) {
-        res.status(404).send({
+        res.status(500).send({
             error: true,
             message:err.message
           })

@@ -8,7 +8,7 @@ recipeRouter
     .get('/popular', controller.popularRecipes)
     .get('/', controller.fetch)
     .get('/:id', controller.fetchOne)
-    .post('/', controller.create)
+    .post('/add', controller.create)
     .patch('/:id', controller.update)
     .delete('/:id', controller.del)
 

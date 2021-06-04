@@ -1,8 +1,5 @@
 import Axios from "axios";
 import {
-    RECIPE_CREATE_FAIL,
-    RECIPE_CREATE_REQUEST,
-    RECIPE_CREATE_SUCCESS,
     RECIPE_DELETE_FAIL,
     RECIPE_DELETE_REQUEST,
     RECIPE_DELETE_SUCCESS,
@@ -12,9 +9,9 @@ import {
     RECIPE_LIST_FAIL,
     RECIPE_LIST_REQUEST,
     RECIPE_LIST_SUCCESS, 
-    RECIPE_UPDATE_FAIL, 
-    RECIPE_UPDATE_REQUEST,
-    RECIPE_UPDATE_SUCCESS} from "../constants/recipeConstants";
+    RECIPE_SAVE_FAIL, 
+    RECIPE_SAVE_REQUEST, 
+    RECIPE_SAVE_SUCCESS} from "../constants/recipeConstants";
 
 // fetch recipes
 export const listRecipes = () => async(dispatch) => {
@@ -57,61 +54,98 @@ export const detailsRecipe = recipeId => async(dispatch) => {
 }
 
 // create recipe
-export const createRecipe = () => async (dispatch, getState) => {
-    dispatch({
-        type: RECIPE_CREATE_REQUEST,
-    });
-
-    const {
-        userLogin: { userInfo } 
-    } = getState();
-
+export const saveRecipe = (recipe, recipeID) => async (dispatch, getState) => {
     try {
-        const { data } = await Axios.post('http://localhost:9002/api/recipes', {},
-        {
+        // dispatch({
+        //     type: RECIPE_SAVE_REQUEST,
+        //     payload: {recipe, recipeID}
+        // });
+
+        //     const {
+        //     userLogin: { userInfo } 
+        // } = getState();
+
+
+        // const { data } = await Axios.patch(`http://localhost:9002/api/recipes/${recipe.id}`, recipe , {
+        //     headers: {Authorization: `Bearer ${userInfo.token}`}
+        // })
+        // dispatch({
+        //     type: RECIPE_SAVE_SUCCESS,
+        //     payload: data
+        // });
+
+        dispatch({
+            type: RECIPE_SAVE_REQUEST,
+            payload: recipe
+        });
+
+            const {
+            userLogin: { userInfo } 
+        } = getState();
+
+
+        const { data } = await Axios.post(`http://localhost:9002/api/recipes/add'`, recipe , {
             headers: {Authorization: `Bearer ${userInfo.token}`}
-        });
+        })
         dispatch({
-            type: RECIPE_CREATE_SUCCESS,
-            payload: data
-        });
-
-    } catch(err) {
-        dispatch({
-            type: RECIPE_CREATE_FAIL,
-            payload: err.message
-        });
-    }
-};
-
-// update recipe 
-export const updateRecipe = recipeId => async(dispatch, getState) => {
-    dispatch({
-        type: RECIPE_UPDATE_REQUEST,
-        payload: recipeId
-    });
-
-    const {
-        userLogin: { userInfo } 
-    } = getState();
-
-    try{
-        const { data } = await Axios.patch(`http://localhost:9002/api/recipes/${recipeId}`,
-        {
-            headers: {Authorization: `Bearer ${userInfo.token}`}
-        });
-        dispatch({
-            type: RECIPE_UPDATE_SUCCESS,
+            type: RECIPE_SAVE_SUCCESS,
             payload: data.recipe
         });
 
+        // if(!recipe._id) {
+        //     const { data } = await Axios.post('http://localhost:9002/api/recipes/add', recipe , {
+        //         headers: {Authorization: `Bearer ${userInfo.token}`}
+        //     });
+        //     dispatch({
+        //         type: RECIPE_SAVE_SUCCESS,
+        //         payload: data
+        //     });
+        // } else {
+        //     const { data } = await Axios.patch(`http://localhost:9002/api/recipes/${recipe._id}`, recipe);
+        //     // {
+        //     //     headers: {Authorization: `Bearer ${userInfo.token}`}
+        //     // });
+        //     dispatch({
+        //         type: RECIPE_SAVE_SUCCESS,
+        //         payload: data
+        //     });
+        // }
     } catch(err) {
         dispatch({
-            type: RECIPE_UPDATE_FAIL,
+            type: RECIPE_SAVE_FAIL,
             payload: err.message
         });
     }
 };
+
+// // update recipe 
+// export const updateRecipe = recipeId => async(dispatch, getState) => {
+//     dispatch({
+//         type: RECIPE_UPDATE_REQUEST,
+//         payload: recipeId
+//     });
+
+//     const {
+//         userLogin: { userInfo } 
+//     } = getState();
+
+//     try{
+//         const { data } = await Axios.patch(`http://localhost:9002/api/recipes/${recipeId}`,
+//         {
+//             headers: {Authorization: `Bearer ${userInfo.token}`}
+//         });
+//         dispatch({
+//             type: RECIPE_UPDATE_SUCCESS,
+//             payload: data.recipe
+//         });
+
+//     } catch(err) {
+//         dispatch({
+//             type: RECIPE_UPDATE_FAIL,
+//             payload: err.message
+//         });
+//     }
+// };
 
 //delete a recipe by its id  
 export const deleteRecipe = recipeId => async(dispatch, getState) => {
