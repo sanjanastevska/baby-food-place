@@ -1,4 +1,5 @@
 import React, { useEffect, useState, } from 'react';
+import Moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { listRecipes, deleteRecipe, saveRecipe } from '../actions/recipeActions';
 
@@ -11,7 +12,7 @@ export function Recipes(props) {
     const [numberPeople, setNumberPeople] = useState(0);
     const [description, setDescription] = useState("");
     const [recipeDesc, setRecipeDesc] = useState("");
-
+    
     const [isOpen, setIsOpen] = useState(false);
     const [id, setId] = useState("");
 
@@ -178,6 +179,7 @@ export function Recipes(props) {
                         </thead>
                         <tbody>
                             {recipes && recipes.map((recipe, i) => {
+                                const date = Moment(recipe.createdAt).format("DD.MM.YYYY")
                                 return (
                                     <tr className="tr-body" key={i} onClick={() => openModel(recipe)} >
                                         <td className="title-cell">{recipe.title}</td>
@@ -186,7 +188,7 @@ export function Recipes(props) {
                                                 {recipe.category}
                                             </div>
                                         </td>
-                                        <td>{recipe.createdAt}</td>
+                                        <td>{date}</td>
                                         <td className="delete-recipe">
                                             <img className="delete-icon" src="images/icon_trashcan.svg" alt="trashcan" onClick={() => deleteRecipeHandler(recipe._id, i)}></img>
                                         </td>
