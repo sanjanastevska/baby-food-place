@@ -8,6 +8,12 @@ import {
     RECIPE_LIST_FAIL,
     RECIPE_LIST_REQUEST,
     RECIPE_LIST_SUCCESS, 
+    RECIPE_NEWEST_LIST_FAIL, 
+    RECIPE_NEWEST_LIST_REQUEST, 
+    RECIPE_NEWEST_LIST_SUCCESS, 
+    RECIPE_POPULAR_LIST_FAIL, 
+    RECIPE_POPULAR_LIST_REQUEST, 
+    RECIPE_POPULAR_LIST_SUCCESS, 
     RECIPE_SAVE_FAIL, 
     RECIPE_SAVE_REQUEST, 
     RECIPE_SAVE_SUCCESS} from "../constants/recipeConstants";
@@ -92,6 +98,48 @@ export const deleteRecipeReducer = (state = {}, action) => {
                 success: true
             };
         case RECIPE_DELETE_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+export const listNewestRecipesReducer = (state = initialState , action) => {
+    switch(action.type) {
+        case RECIPE_NEWEST_LIST_REQUEST:
+            return {
+                ...state
+            };
+        case RECIPE_NEWEST_LIST_SUCCESS:
+            return {
+                ...state,
+                recipes: action.payload
+            };
+        case RECIPE_NEWEST_LIST_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+export const listPopularRecipesReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case RECIPE_POPULAR_LIST_REQUEST:
+            return {
+                ...state
+            };
+        case RECIPE_POPULAR_LIST_SUCCESS:
+            return {
+                ...state,
+                recipes: action.payload
+            };
+        case RECIPE_POPULAR_LIST_FAIL:
             return {
                 ...state,
                 error: action.payload

@@ -5,9 +5,9 @@ import { Home } from '../screens/Home';
 import { Login } from '../screens/Login';
 import { Register } from '../screens/Register';
 import { Footer } from './Footer';
-import { Recipe } from '../screens/Recipe';
 import { Profile } from '../screens/Profile';
 import { Recipes } from '../screens/Recipes';
+import { Recipe } from '../screens/Recipe';
 
 export function App() {
 

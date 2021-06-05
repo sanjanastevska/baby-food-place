@@ -497,13 +497,71 @@ input {
 }
 
 /* home */
+.homeScreen{
+  margin-left: 336px;
+  margin-right: 693px;
+  top: 193px; 
+  margin-bottom: 130px;
+}
 .home{
   display: grid;
   grid-template-columns: repeat(3, 373px);
   grid-gap: 64px;
-  margin-left: 336px;
-  /* margin-left: 337px; */
-  margin-bottom: 130px;
+}
+
+.fresh-and-new-wrapper{
+  display: grid;
+  grid-template-columns: 220px 1000px ;
+  justify-content: space-between;
+  align-items: center;
+  top: 193px;
+}
+
+.fresh-and-new-text{
+  font-family: 'Roboto Slab', serif;
+  color: #96BB36;
+  text-align: left;
+  font-size: 36px;
+  display: inline;
+  width: 220px;
+}
+
+.hr-fresh{
+  display: inline;
+  border: 1px solid #D8D8D8;
+  width: 1020px;
+  height: 0px;
+  margin-left:0;
+  margin-top: 28px;
+}
+
+.popular{
+  margin-top: 40px;
+}
+
+.popular-wrapper{
+  display: grid;
+  grid-template-columns: 380px 840px ;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popular-text{
+  font-family: 'Roboto Slab', serif;
+  color: #96BB36;
+  text-align: left;
+  font-size: 36px;
+  display: inline;
+  width: 380px;
+}
+
+.hr-popular{
+  display: inline;
+  border: 1px solid #D8D8D8;
+  width: 860px;
+  height: 0px;
+  margin-left:0;
+  margin-top: 28px;
 }
 
 /* dialog */
@@ -632,7 +690,7 @@ input {
   right: 0;
   bottom: 0;
   background-color: #F8F7F2;
-  /* -webkit-backdrop-filter: blur(24px); */
+  -webkit-backdrop-filter: blur(24px);
   filter: blur(24px);
   pointer-events: none;
 }

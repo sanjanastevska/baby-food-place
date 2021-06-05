@@ -9,6 +9,12 @@ import {
     RECIPE_LIST_FAIL,
     RECIPE_LIST_REQUEST,
     RECIPE_LIST_SUCCESS, 
+    RECIPE_NEWEST_LIST_FAIL, 
+    RECIPE_NEWEST_LIST_REQUEST, 
+    RECIPE_NEWEST_LIST_SUCCESS, 
+    RECIPE_POPULAR_LIST_FAIL, 
+    RECIPE_POPULAR_LIST_REQUEST, 
+    RECIPE_POPULAR_LIST_SUCCESS, 
     RECIPE_SAVE_FAIL, 
     RECIPE_SAVE_REQUEST, 
     RECIPE_SAVE_SUCCESS} from "../constants/recipeConstants";
@@ -172,3 +178,43 @@ export const deleteRecipe = recipeId => async(dispatch, getState) => {
         });
     }
 }
+
+export const listNewestRecipes = () => async (dispatch) => {
+    dispatch({
+        type: RECIPE_NEWEST_LIST_REQUEST
+    });
+
+    try {
+        const { data } = await Axios.get('http://localhost:9002/api/recipes/newest');
+        console.log("newestDate:", data)
+        dispatch({
+            type: RECIPE_NEWEST_LIST_SUCCESS,
+            payload: data.getNewestRecipes
+        });
+    } catch(err) {
+        dispatch({
+            type:RECIPE_NEWEST_LIST_FAIL,
+            payload: err.message
+        })
+    }
+};
+
+export const listPopularRecipes = () => async (dispatch) => {
+    dispatch({
+        type: RECIPE_POPULAR_LIST_REQUEST
+    });
+
+    try {
+        const { data } = await Axios.get('http://localhost:9002/api/recipes/popular');
+        console.log()
+        dispatch({
+            type: RECIPE_POPULAR_LIST_SUCCESS,
+            payload: data.getTheMostPopularRecipes
+        });
+    } catch(err) {
+        dispatch({
+            type:RECIPE_POPULAR_LIST_FAIL,
+            payload: err.message
+        })
+    }
+};
