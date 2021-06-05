@@ -59,13 +59,13 @@ export function Recipes(props) {
     const openModel = (recipe) => {
         setIsOpen(true);
         setId(recipe._id);
-        setTitle(recipe.name);
+        setTitle(recipe.title);
         setImage(recipe.image);
         setCategory(recipe.category);
         setPreparationTime(recipe.preparationTime);
         setNumberPeople(recipe.numberPeople);
         setDescription(recipe.description);
-        setRecipeDesc(recipe.recipeDesc);
+        setRecipeDesc(recipe.recipe);
     }
 
 

@@ -12,6 +12,7 @@ export function Nav() {
     const logoutHandler = () => {
         dispatch(logout());
     };
+
     return (
         <nav className="navbar">
             <Link to="/"><img src="/images/logo_color.svg" alt="logo" className="logo" /></Link>

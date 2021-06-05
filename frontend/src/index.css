@@ -564,6 +564,34 @@ input {
   margin-top: 28px;
 }
 
+/* Filter */
+.filter-wrapper{
+  display: grid;
+  grid-template-columns: 165px 1070px ;
+  justify-content: space-between;
+  align-items: center;
+  top: 193px;
+}
+
+.filter-text{
+  font-family: 'Roboto Slab', serif;
+  color: #96BB36;
+  text-align: left;
+  font-size: 36px;
+  display: inline;
+  width: 165px;
+}
+
+.hr-filter{
+  display: inline;
+  border: 1px solid #D8D8D8;
+  width: 1070px;
+  height: 0px;
+  margin-left:0;
+  margin-top: 28px;
+}
+
+
 /* dialog */
 .recipe-dialog{
   position: fixed;

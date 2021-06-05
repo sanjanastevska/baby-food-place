@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { listNewestRecipes, listPopularRecipes, listRecipes } from '../actions/recipeActions';
+import { listNewestRecipes, listPopularRecipes } from '../actions/recipeActions';
 import { Recipe } from '../components/Recipe';
 
 export function Home() {

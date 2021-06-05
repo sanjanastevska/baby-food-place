@@ -17,7 +17,10 @@ import {
     RECIPE_POPULAR_LIST_SUCCESS, 
     RECIPE_SAVE_FAIL, 
     RECIPE_SAVE_REQUEST, 
-    RECIPE_SAVE_SUCCESS} from "../constants/recipeConstants";
+    RECIPE_SAVE_SUCCESS,
+    RECIPE_LIST_BY_CATEGORY_REQUEST,
+    RECIPE_LIST_BY_CATEGORY_SUCCESS,
+    RECIPE_LIST_BY_CATEGORY_FAIL} from "../constants/recipeConstants";
 
 // fetch recipes
 export const listRecipes = () => async(dispatch) => {
@@ -186,7 +189,6 @@ export const listNewestRecipes = () => async (dispatch) => {
 
     try {
         const { data } = await Axios.get('http://localhost:9002/api/recipes/newest');
-        console.log("newestDate:", data)
         dispatch({
             type: RECIPE_NEWEST_LIST_SUCCESS,
             payload: data.getNewestRecipes
@@ -206,7 +208,6 @@ export const listPopularRecipes = () => async (dispatch) => {
 
     try {
         const { data } = await Axios.get('http://localhost:9002/api/recipes/popular');
-        console.log()
         dispatch({
             type: RECIPE_POPULAR_LIST_SUCCESS,
             payload: data.getTheMostPopularRecipes
@@ -214,6 +215,26 @@ export const listPopularRecipes = () => async (dispatch) => {
     } catch(err) {
         dispatch({
             type:RECIPE_POPULAR_LIST_FAIL,
+            payload: err.message
+        })
+    }
+};
+
+export const listRecipesByCategory = (category) => async (dispatch) => {
+    dispatch({
+        type: RECIPE_LIST_BY_CATEGORY_REQUEST
+    });
+
+    try {
+        const { data } = await Axios.get(`http://localhost:9002/api/recipes/filter?category=${category}`);
+        
+        dispatch({
+            type: RECIPE_LIST_BY_CATEGORY_SUCCESS,
+            payload: data.getRecipesByCategory
+        });
+    } catch(err) {
+        dispatch({
+            type:RECIPE_LIST_BY_CATEGORY_FAIL,
             payload: err.message
         })
     }

@@ -33,6 +33,24 @@ const popularRecipes = async(_, res, next) => {
   await next;
 }
 
+const filterByCategory = async(req, res, next) => {
+    try{
+        const getRecipesByCategory =await Recipe.find({}).where('category').equals(req.query.category).exec();
+
+        res.status(200).send({
+            error: false,
+            getRecipesByCategory
+        });
+
+    } catch(err) {
+        res.status(500).send({
+            error: true,
+            message: err.message
+        });
+    }
+    await next;
+};
+
 const fetch = async (_, res, next) => {
     try {
         const recipes = await Recipe.find({});
@@ -133,7 +151,8 @@ module.exports = {
     update,
     del,
     newestRecipes,
-    popularRecipes
+    popularRecipes,
+    filterByCategory
 };
 
 

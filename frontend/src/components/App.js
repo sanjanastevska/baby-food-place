@@ -8,6 +8,10 @@ import { Footer } from './Footer';
 import { Profile } from '../screens/Profile';
 import { Recipes } from '../screens/Recipes';
 import { Recipe } from '../screens/Recipe';
+import { Breakfest } from '../screens/Breakfest';
+import { Brunch } from '../screens/Brunch';
+import { Lunch } from '../screens/Lunch';
+import { Dinner } from '../screens/Dinner';
 
 export function App() {
 
@@ -24,6 +28,10 @@ export function App() {
           <Route path="/register" component={Register}></Route>
           <Route path="/profile" component={Profile}></Route>
           <Route path="/recipes" component={Recipes}></Route>
+          <Route path="/breakfest" component={Breakfest}></Route>
+          <Route path="/brunch" component={Brunch}></Route>
+          <Route path="/lunch" component={Lunch}></Route>
+          <Route path="/dinner" component={Dinner}></Route>
         </Switch>
       </main>
       <footer>
