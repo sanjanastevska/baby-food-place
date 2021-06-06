@@ -4,22 +4,30 @@ import { detailsRecipe } from '../actions/recipeActions';
 
 
 export function Recipe(props) {
-    const recipeId = props.match.params.id;
+    // const { recipe } = props;
     const recipeDetails = useSelector(state => state.detailsRecipe);
     const { recipe } = recipeDetails;
+
+    // console.log("(1)Props", props)
+    console.log("ID", recipe._id)
     
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(detailsRecipe(recipeId));
-    }, [dispatch, recipeId]);
+    //  console.log("(2) ID", recipe._id)
+    //  console.log("(3) RECIPE", recipe)
+    
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(detailsRecipe(recipe._id));
+    // }, [dispatch, recipe._id]);
+
+    // const filterRecipes = useSelector(state => state.recipesList);
 
     
     return (
-        <div className="recipe-dialog active">
+        <div className="recipe-dialog active" show ={props.show}>
             <div className="recipe-header">
                 <div className="title">{recipe.title}</div>
                 {/* <button className=".close-btn"> */}
-                    <img className="close" src="/images/icon_close.svg" alt="close" onClick='{handleClose}'></img>
+                    <img className="close" src="/images/icon_close.svg" alt="close" onClick={() => props.onHide()}></img>
                 {/* </button> */}
             </div>
             <div className="recipe-body">
@@ -41,7 +49,6 @@ export function Recipe(props) {
                     <p className="recipe-recipe-disc">{recipe.recipe}</p>
                 </div>
             </div>
-            <div className="overlay"></div>
         </div>
     )
 };

@@ -4,7 +4,7 @@ const recipeSchema = mongoose.Schema({
     title: {
         type: String,
         unique: true,
-        required: true
+        // required: true
     },
     image: {
         type: String,
@@ -12,23 +12,23 @@ const recipeSchema = mongoose.Schema({
     },
     category: {
         type: String,
-        required: true
+        // required: true
     },
     preparationTime: {
         type: Number,
-        required: true
+        // required: true
     },
     numberPeople: {
         type: Number,
-        required: true
+        // required: true
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     recipe: {
         type: String,
-        required: true
+        // required: true
     },
     rating: {
         type: Number

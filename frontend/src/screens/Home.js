@@ -1,26 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listNewestRecipes, listPopularRecipes } from '../actions/recipeActions';
 import { Recipe } from '../components/Recipe';
+import { Recipe as RecipeModal } from './Recipe';
 
 export function Home() {
 
-    //to get an object from redux store we need to use useSelector
-    // const recipesList = useSelector(state => state.recipesList);
-    // const { recipes } = recipesList;
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
 
     const newestRecipes = useSelector(state => state.newestRecipes);
-    const { recipes:newRecipes } = newestRecipes;
+    const { recipes: newRecipes } = newestRecipes;
 
     const popularRecipes = useSelector(state => state.popularRecipes);
-    const { recipes:mostPopularRecipes } = popularRecipes;
-   
+    const { recipes: mostPopularRecipes } = popularRecipes;
+
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listPopularRecipes());
         dispatch(listNewestRecipes());
     }, [dispatch]);
+
+    const cardEvents = card => {
+        console.log(card);
+        handleShow()
+    }
 
     return (
         <div className="homeScreen" >
@@ -31,10 +37,22 @@ export function Home() {
                 </div>
                 <div className="home">
                     {newRecipes.map(recipe => (
-                        <Recipe
-                            key={recipe._id}
-                            recipe={recipe}
-                        />
+                        <>
+                            <div>
+                                <Recipe
+                                    key={recipe._id}
+                                    recipe={recipe}
+                                    cardEvents={cardEvents}
+                                />
+                                {show ?
+                                    <RecipeModal
+                                        show={show}
+                                        onHide={handleClose}
+                                        recipe={recipe}
+                                    />
+                                    : null}
+                            </div>
+                        </>
                     ))}
                 </div>
             </div>
@@ -45,10 +63,23 @@ export function Home() {
                 </div>
                 <div className="home">
                     {mostPopularRecipes.map(recipe => (
-                        <Recipe
-                            key={recipe._id}
-                            recipe={recipe}
-                        />
+                        <>
+                            <div>
+                                <Recipe
+                                    key={recipe._id}
+                                    recipe={recipe}
+                                    cardEvents={cardEvents}
+                                />
+                                {show ?
+                                    <RecipeModal
+                                        key={recipe._id}
+                                        show={show}
+                                        onHide={handleClose}
+                                        recipe={recipe}
+                                    />
+                                    : null}
+                            </div>
+                        </>
                     ))}
                 </div>
             </div>

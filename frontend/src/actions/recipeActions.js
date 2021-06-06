@@ -93,7 +93,7 @@ export const saveRecipe = (recipe, recipeID) => async (dispatch, getState) => {
         } = getState();
 
 
-        const { data } = await Axios.post(`http://localhost:9002/api/recipes/add'`, recipe , {
+        const { data } = await Axios.post(`http://localhost:9002/api/recipes/`, recipe , {
             headers: {Authorization: `Bearer ${userInfo.token}`}
         })
         dispatch({
@@ -104,12 +104,13 @@ export const saveRecipe = (recipe, recipeID) => async (dispatch, getState) => {
         // if(!recipe._id) {
         //     const { data } = await Axios.post('http://localhost:9002/api/recipes/add', recipe , {
         //         headers: {Authorization: `Bearer ${userInfo.token}`}
-        //     });
+        // //     });
         //     dispatch({
         //         type: RECIPE_SAVE_SUCCESS,
         //         payload: data
         //     });
-        // } else {
+        // } 
+        // else {
         //     const { data } = await Axios.patch(`http://localhost:9002/api/recipes/${recipe._id}`, recipe);
         //     // {
         //     //     headers: {Authorization: `Bearer ${userInfo.token}`}

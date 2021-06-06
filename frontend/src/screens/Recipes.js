@@ -58,15 +58,28 @@ export function Recipes(props) {
     }, [userInfo]);
 
     const openModel = (recipe) => {
+        // setIsUpdate(true);
         setIsOpen(true);
         setId(recipe._id);
-        setTitle(recipe.title);
+        setTitle(title);
         setImage(recipe.image);
         setCategory(recipe.category);
         setPreparationTime(recipe.preparationTime);
         setNumberPeople(recipe.numberPeople);
         setDescription(recipe.description);
         setRecipeDesc(recipe.recipe);
+    }
+
+    const openModelCreate = () => {
+        // setIsUpdate(false); 
+        setIsOpen(true);
+        setTitle("");
+        setImage("");
+        setCategory("");
+        setPreparationTime(0);
+        setNumberPeople(0);
+        setDescription("");
+        setRecipeDesc("");
     }
 
 
@@ -97,7 +110,7 @@ export function Recipes(props) {
                                     type="text"
                                     id="recipeTitle"
                                     placeholder="Enter Title"
-                                    value={title}
+                                    value=  {title}  
                                     required
                                     onChange={e => setTitle(e.target.value)}
                                 />
@@ -166,7 +179,7 @@ export function Recipes(props) {
                     <div className="recipes-wrapper">
                         <p className="my-recipes-text">My Recipes</p>
                         <hr className="recipes-hr" />
-                        <img className="icon-plus-back" src="images/icon_plus_white.svg" alt="plus" onClick={() => openModel()}></img>
+                        <img className="icon-plus-back" src="images/icon_plus_white.svg" alt="plus" onClick={() => openModelCreate()}></img>
                     </div>
                     <table className="recipes-table">
                         <thead>

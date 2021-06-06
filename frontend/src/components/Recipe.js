@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export function Recipe(props) {
     const { recipe } = props;
 
     return (
-        <div key={recipe._id} className="card-container">
-            <Link to={`recipes/${recipe._id}`} className="hidden-link" >
+        <div key={recipe._id} className="card-container" onClick={() => props.cardEvents(recipe)}>
                 <div className="recipe-img-wrapper">
                     <img className="recipe-img" src={recipe.image} alt={recipe.name} />
                     <p className="recipe-category">{recipe.category}</p>
@@ -25,7 +23,6 @@ export function Recipe(props) {
                         </div>
                     </div>
                 </div>
-            </Link>
         </div>
     )
 }
