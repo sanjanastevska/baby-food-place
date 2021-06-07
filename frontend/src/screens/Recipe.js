@@ -4,12 +4,12 @@ import { detailsRecipe } from '../actions/recipeActions';
 
 
 export function Recipe(props) {
-    // const { recipe } = props;
-    const recipeDetails = useSelector(state => state.detailsRecipe);
-    const { recipe } = recipeDetails;
+    const { recipe } = props;
+    // const recipeDetails = useSelector(state => state.detailsRecipe);
+    // const { recipe } = recipeDetails;
 
-    // console.log("(1)Props", props)
-    console.log("ID", recipe._id)
+    // // console.log("(1)Props", props)
+    // console.log("ID", recipe._id)
     
     //  console.log("(2) ID", recipe._id)
     //  console.log("(3) RECIPE", recipe)

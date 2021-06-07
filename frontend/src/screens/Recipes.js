@@ -1,7 +1,7 @@
 import React, { useEffect, useState, } from 'react';
 import Moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { listRecipes, deleteRecipe, saveRecipe } from '../actions/recipeActions';
+import { listRecipes, deleteRecipe, updateRecipe, createRecipe } from '../actions/recipeActions';
 
 export function Recipes(props) {
 
@@ -15,6 +15,7 @@ export function Recipes(props) {
     
     const [isOpen, setIsOpen] = useState(false);
     const [id, setId] = useState("");
+    const [canCreateRecipe, setCanCreateRecipe] = useState(false)
 
     const recipesList = useSelector(state => state.recipesList);
     const { recipes } = recipesList;
@@ -24,8 +25,11 @@ export function Recipes(props) {
     const userStatus = useSelector(state => state.userLogin);
     const { userInfo } = userStatus;
 
-    const savedRecipe = useSelector(state => state.saveRecipe);
-    const { successSave } = savedRecipe
+    const createdRecipe = useSelector(state => state.createRecipe);
+    const { successCreate } = createdRecipe
+
+    const updatedRecipe = useSelector(state => state.updateRecipe);
+    const { successUpdate } = updatedRecipe
 
 
     const deletedRecipe = useSelector(state => state.deleteRecipe);
@@ -45,34 +49,37 @@ export function Recipes(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(saveRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+        if(canCreateRecipe) {
+            dispatch(createRecipe({ title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+        } else {
+            dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+        }
     };
 
     useEffect(() => {
-        if(successSave) {
+        if(successCreate || successUpdate) {
             props.history.push("/recipes");
         }
-        dispatch(
-            listRecipes(userInfo)
-        );
+        dispatch(listRecipes(userInfo));
     }, [userInfo]);
 
-    const openModel = (recipe) => {
-        // setIsUpdate(true);
+    const openModelUpdate = (recipe) => {
         setIsOpen(true);
+        setCanCreateRecipe(false);
         setId(recipe._id);
-        setTitle(title);
+        setTitle(recipe.title);
         setImage(recipe.image);
         setCategory(recipe.category);
         setPreparationTime(recipe.preparationTime);
         setNumberPeople(recipe.numberPeople);
         setDescription(recipe.description);
         setRecipeDesc(recipe.recipe);
+
     }
 
     const openModelCreate = () => {
-        // setIsUpdate(false); 
         setIsOpen(true);
+        setCanCreateRecipe(true);
         setTitle("");
         setImage("");
         setCategory("");
@@ -194,7 +201,7 @@ export function Recipes(props) {
                             {recipes && recipes.map((recipe, i) => {
                                 const date = Moment(recipe.createdAt).format("DD.MM.YYYY")
                                 return (
-                                    <tr className="tr-body" key={i} onClick={() => openModel(recipe)} >
+                                    <tr className="tr-body" key={i} onClick={() =>openModelUpdate(recipe)} >
                                         <td className="title-cell">{recipe.title}</td>
                                         <td className="category-cell">
                                             <div className="category-cell-text">

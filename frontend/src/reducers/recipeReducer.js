@@ -1,4 +1,7 @@
 import {
+    RECIPE_CREATE_FAIL,
+    RECIPE_CREATE_REQUEST,
+    RECIPE_CREATE_SUCCESS,
     RECIPE_DELETE_FAIL,
     RECIPE_DELETE_REQUEST,
     RECIPE_DELETE_SUCCESS,
@@ -17,9 +20,9 @@ import {
     RECIPE_POPULAR_LIST_FAIL, 
     RECIPE_POPULAR_LIST_REQUEST, 
     RECIPE_POPULAR_LIST_SUCCESS, 
-    RECIPE_SAVE_FAIL, 
-    RECIPE_SAVE_REQUEST, 
-    RECIPE_SAVE_SUCCESS} from "../constants/recipeConstants";
+    RECIPE_UPDATE_FAIL,
+    RECIPE_UPDATE_REQUEST,
+    RECIPE_UPDATE_SUCCESS} from "../constants/recipeConstants";
 
 const initialState = {
     recipes: []
@@ -66,19 +69,41 @@ export const detailsRecipeReducer = (state = { recipe: {}}, action) => {
     }
 };
 
-export const saveRecipeReducer = (state = {}, action) => {
+export const createRecipeReducer = (state = {}, action) => {
     switch(action.type) {
-        case RECIPE_SAVE_REQUEST:
+        case RECIPE_CREATE_REQUEST:
             return {
                 ...state
             };
-        case RECIPE_SAVE_SUCCESS:
+        case RECIPE_CREATE_SUCCESS:
             return {
                 ...state,
                 success: true,
                 recipe: action.payload
             };
-        case RECIPE_SAVE_FAIL:
+        case RECIPE_CREATE_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+export const updateRecipeReducer = (state = {}, action) => {
+    switch(action.type) {
+        case RECIPE_UPDATE_REQUEST:
+            return {
+                ...state
+            };
+        case RECIPE_UPDATE_SUCCESS:
+            return {
+                ...state,
+                success: true,
+                recipe: action.payload
+            };
+        case RECIPE_UPDATE_FAIL:
             return {
                 ...state,
                 error: action.payload

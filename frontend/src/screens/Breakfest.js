@@ -57,8 +57,6 @@ export function Breakfest() {
                                 <RecipeModal
                                     show={show}
                                     onHide={handleClose}
-                                    // key={recipe._id}
-                                    // recipe={recipe}
                                 />
                                 : null}
                 </div>
