@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('express-jwt');
 const upload = require('express-fileupload');
+const cors = require('cors');
 const config  = require('../../config/index');
 const router = require('./router');
 
@@ -22,6 +23,7 @@ api.use((err, req, res, next) => {
     }
 });
 
+api.use(cors());
 api.use(upload());
 
 api.use('api/storage', router);

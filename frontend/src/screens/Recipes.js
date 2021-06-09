@@ -2,17 +2,20 @@ import React, { useEffect, useState, } from 'react';
 import Moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { listRecipes, deleteRecipe, updateRecipe, createRecipe } from '../actions/recipeActions';
+import Axios from 'axios';
 
 export function Recipes(props) {
 
     const [title, setTitle] = useState("");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(null);
     const [category, setCategory] = useState("breakfest");
     const [preparationTime, setPreparationTime] = useState(0);
     const [numberPeople, setNumberPeople] = useState(0);
     const [description, setDescription] = useState("");
     const [recipeDesc, setRecipeDesc] = useState("");
-    
+
+    const [selectedFile, setSelectedFile] = useState('');
+
     const [isOpen, setIsOpen] = useState(false);
     const [id, setId] = useState("");
     const [canCreateRecipe, setCanCreateRecipe] = useState(false)
@@ -47,17 +50,39 @@ export function Recipes(props) {
         props.history.push("/recipes");
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        if(canCreateRecipe) {
+        if (canCreateRecipe) {
             dispatch(createRecipe({ title, image, category, preparationTime, numberPeople, description, recipeDesc }));
         } else {
             dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
         }
+
+        
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+
+        try {
+            console.log("Fetch Data Before:")
+            const { data } = await Axios.post(`http://localhost:9003/api/storage/upload`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            });
+
+            console.log("Fetch Data Before 2222")
+
+            const { fileName, filePath } = data.data;
+            console.log("FileName:", fileName, "FilePath:", filePath)
+            setImage({ fileName, filePath });
+        } catch (err) {
+            alert("Could not upload the file!");
+        }
     };
 
     useEffect(() => {
-        if(successCreate || successUpdate) {
+        if (successCreate || successUpdate) {
             props.history.push("/recipes");
         }
         dispatch(listRecipes(userInfo));
@@ -66,6 +91,7 @@ export function Recipes(props) {
     const openModelUpdate = (recipe) => {
         setIsOpen(true);
         setCanCreateRecipe(false);
+        // const productId = props.match.params.id;
         setId(recipe._id);
         setTitle(recipe.title);
         setImage(recipe.image);
@@ -87,6 +113,12 @@ export function Recipes(props) {
         setNumberPeople(0);
         setDescription("");
         setRecipeDesc("");
+    };
+
+    const onChangeHandler = e => {
+        // Log event.target.files , it is an array of all stored files.  target.files[0]holds the actual file and its details.
+        setSelectedFile(e.target.files[0]);
+        console.log("Select:", e.target.files[0])
     }
 
 
@@ -102,13 +134,17 @@ export function Recipes(props) {
                     <form className="form-recipe-container" onSubmit={submitHandler}>
                         <div className="recipe-image-wrapper">
                             <label className="recipe-image-text" htmlFor="image">Recipe Image</label>
-                            <input
+                            <img id="small-image" src={image.filePath} alt={image.fileName} />
+                            <label className="upload-btn">
+                                <input type="file" onChange={onChangeHandler} />
+                                UPLOAD IMAGE
+                            </label>
+                            {/* <input
                                 type="text"
                                 id="small-image"
                                 value={image}
                                 onChange={e => setImage(e.target.value)}
-                            />
-                            <button className="upload-btn">UPLOAD IMAGE</button>
+                            /> */}
                         </div>
                         <div className="recipe-info-wrapper-one">
                             <div>
@@ -117,7 +153,7 @@ export function Recipes(props) {
                                     type="text"
                                     id="recipeTitle"
                                     placeholder="Enter Title"
-                                    value=  {title}  
+                                    value={title}
                                     required
                                     onChange={e => setTitle(e.target.value)}
                                 />
@@ -201,7 +237,7 @@ export function Recipes(props) {
                             {recipes && recipes.map((recipe, i) => {
                                 const date = Moment(recipe.createdAt).format("DD.MM.YYYY")
                                 return (
-                                    <tr className="tr-body" key={i} onClick={() =>openModelUpdate(recipe)} >
+                                    <tr className="tr-body" key={i} onClick={() => openModelUpdate(recipe)} >
                                         <td className="title-cell">{recipe.title}</td>
                                         <td className="category-cell">
                                             <div className="category-cell-text">

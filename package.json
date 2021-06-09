@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-users": "nodemon backend/services/users",
     "start-recipes": "nodemon backend/services/recipes",
+    "start-storage": "nodemon backend/services/storage",
     "start-proxy": "nodemon backend/services/proxy",
-    "start": "concurrently --kill-others \"npm run start-users\" \"npm run start-recipes\" \"npm run start-proxy\""
+    "start": "concurrently --kill-others \"npm run start-users\" \"npm run start-recipes\"  \"npm run start-storage\" \"npm run start-proxy\""
   },
   "repository": {
     "type": "git",

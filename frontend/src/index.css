@@ -1053,6 +1053,8 @@ thead{
   font-size: 14px;
   font-family: 'Roboto', sans-serif ;
   border-radius: 5px;
+  box-sizing: border-box;
+  padding-top: 5px;
 }
 
 #recipeTitle{
@@ -1141,6 +1143,10 @@ thead{
   -webkit-box-orient: vertical;
   box-sizing: border-box;
   padding: 10px;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 /* @media screen and (max-width: 960px) {
