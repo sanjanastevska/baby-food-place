@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk';
-import { createRecipeReducer, deleteRecipeReducer, detailsRecipeReducer, listNewestRecipesReducer, listPopularRecipesReducer, listRecipesByCategoryReducer, recipesListReducer, saveRecipeReducer, updateRecipeReducer} from './reducers/recipeReducer';
+import { createRecipeReducer, deleteRecipeReducer, detailsRecipeReducer, listNewestRecipesReducer, listPopularRecipesReducer, listRecipesByCategoryReducer, ratingRecipeReducer, recipesListReducer, saveRecipeReducer, updateRecipeReducer} from './reducers/recipeReducer';
 import { updateUserReducer, userLoginReducer, userRegisterReducer } from './reducers/userReducer';
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +15,7 @@ const reducer = combineReducers({
     createRecipe: createRecipeReducer,
     updateRecipe: updateRecipeReducer,
     deleteRecipe: deleteRecipeReducer,
+    rateRecipe: ratingRecipeReducer,
     newestRecipes: listNewestRecipesReducer,
     popularRecipes: listPopularRecipesReducer,
     filterRecipes: listRecipesByCategoryReducer,

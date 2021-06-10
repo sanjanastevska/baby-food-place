@@ -144,6 +144,25 @@ const del = async (req, res, next) => {
     await next;
 }
 
+// const rating = async (req, res, next) => {
+//     try {
+//         const recipe = await Recipe.findById({ _id: req.params.id});
+//         const counter = 0
+//         recipe.rating = 
+
+//         res.status(200).send({
+//             error: false,
+//             recipe
+//         });
+//     } catch(err) {
+//         res.status(500).send({
+//             error: true,
+//             message: 'Recipe Not Found'
+//         });
+//     }
+//   await next;
+// }
+
 
 module.exports = {
     fetch,
@@ -153,7 +172,8 @@ module.exports = {
     del,
     newestRecipes,
     popularRecipes,
-    filterByCategory
+    filterByCategory,
+    // rating
 };
 
 

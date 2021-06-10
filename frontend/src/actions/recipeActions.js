@@ -26,7 +26,10 @@ import {
     RECIPE_UPDATE_FAIL,
     RECIPE_CREATE_REQUEST,
     RECIPE_CREATE_SUCCESS,
-    RECIPE_CREATE_FAIL} from "../constants/recipeConstants";
+    RECIPE_CREATE_FAIL,
+    RECIPE_RATING_REQUEST,
+    RECIPE_RATING_SUCCESS,
+    RECIPE_RATING_FAIL} from "../constants/recipeConstants";
 
 // fetch recipes
 export const listRecipes = () => async(dispatch) => {
@@ -208,3 +211,31 @@ export const listRecipesByCategory = (category) => async (dispatch) => {
         })
     }
 };
+
+// rate
+export const rateRecipe = (recipeId, rating) => async(dispatch, getState) => {
+    try {
+        const {
+            userLogin: { userInfo } 
+        } = getState();
+
+        dispatch({
+            type: RECIPE_RATING_REQUEST,
+            payload: rating
+        });
+
+        const { data } = await Axios.post(`http://localhost:9002/api/recipes/${recipeId}/rating`, rating, {
+            headers: {Authorization: `Bearer ${userInfo.token}`}
+        });
+        dispatch({
+            type: RECIPE_RATING_SUCCESS,
+            payload: data.rating
+        });
+        
+    } catch(err) {
+        dispatch({
+            type: RECIPE_RATING_FAIL,
+            payload: err.message
+        });
+    }
+}

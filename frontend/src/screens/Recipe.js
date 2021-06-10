@@ -1,34 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailsRecipe } from '../actions/recipeActions';
 
 
 export function Recipe(props) {
     const { recipe } = props;
-    // const recipeDetails = useSelector(state => state.detailsRecipe);
-    // const { recipe } = recipeDetails;
-
-    // // console.log("(1)Props", props)
-    // console.log("ID", recipe._id)
-    
-    //  console.log("(2) ID", recipe._id)
-    //  console.log("(3) RECIPE", recipe)
-    
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(detailsRecipe(recipe._id));
-    // }, [dispatch, recipe._id]);
-
-    // const filterRecipes = useSelector(state => state.recipesList);
-
+    console.log("PROPS:" , props)
     
     return (
         <div className="recipe-dialog active" show ={props.show}>
             <div className="recipe-header">
                 <div className="title">{recipe.title}</div>
-                {/* <button className=".close-btn"> */}
                     <img className="close" src="/images/icon_close.svg" alt="close" onClick={() => props.onHide()}></img>
-                {/* </button> */}
             </div>
             <div className="recipe-body">
                 <div className="recipe-left-column">

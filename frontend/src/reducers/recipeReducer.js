@@ -20,6 +20,8 @@ import {
     RECIPE_POPULAR_LIST_FAIL, 
     RECIPE_POPULAR_LIST_REQUEST, 
     RECIPE_POPULAR_LIST_SUCCESS, 
+    RECIPE_RATING_REQUEST, 
+    RECIPE_RATING_SUCCESS, 
     RECIPE_UPDATE_FAIL,
     RECIPE_UPDATE_REQUEST,
     RECIPE_UPDATE_SUCCESS} from "../constants/recipeConstants";
@@ -189,6 +191,28 @@ export const listRecipesByCategoryReducer = (state = { recipes: [], activeLink :
                 recipes: action.payload
             };
         case RECIPE_LIST_BY_CATEGORY_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+export const ratingRecipeReducer = (state = {}, action) => {
+    switch(action.type) {
+        case RECIPE_RATING_REQUEST:
+            return {
+                ...state
+            };
+        case RECIPE_RATING_SUCCESS:
+            return {
+                ...state,
+                success: true,
+                rating: action.payload
+            };
+        case RECIPE_DETAILS_FAIL:
             return {
                 ...state,
                 error: action.payload

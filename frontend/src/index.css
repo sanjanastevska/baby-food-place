@@ -407,6 +407,7 @@ input {
   height: 234px;
   border-radius: 5px 5px 0px 0px;
   background-color: transparent;
+  cursor: pointer;
 }
 
 
@@ -436,6 +437,7 @@ input {
   font-weight: bold;
   color: #F0972A;
   text-align: left;
+  cursor: pointer;
 }
 
 .hidden-link{ 
@@ -494,6 +496,10 @@ input {
 .plate,
 .star{
   margin-right: 5px;
+}
+
+.star{
+  cursor: pointer;
 }
 
 /* home */
@@ -605,11 +611,11 @@ input {
   z-index: 999;
   left: 50%;
   top:50%;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%);
 }
 
 .recipe-dialog.active{
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
 }
 
 .recipe-header{
@@ -717,13 +723,14 @@ input {
   top: 0;
   right: 0;
   bottom: 0;
+ 
   background-color: #F8F7F2;
-  filter: blur(5px);
   pointer-events: none;
 }
 .overlay.active {
-  opacity: 0.4;
+  opacity: 0.6;
   pointer-events: all;
+  backdrop-filter: blur(5px);
 }
 
 .recipe-recipe-disc{

@@ -12,6 +12,7 @@ recipeRouter
     .post('/', controller.create)
     .patch('/:id', controller.update)
     .delete('/:id', controller.del)
+    // .post('/:id/rating'. controller.rating)
 
   
 module.exports = recipeRouter;

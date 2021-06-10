@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { listNewestRecipes, listPopularRecipes } from '../actions/recipeActions';
+import { detailsRecipe, listNewestRecipes, listPopularRecipes } from '../actions/recipeActions';
 import { Recipe } from '../components/Recipe';
 import { Recipe as RecipeModal } from './Recipe';
 
@@ -16,6 +16,9 @@ export function Home() {
     const popularRecipes = useSelector(state => state.popularRecipes);
     const { recipes: mostPopularRecipes } = popularRecipes;
 
+    const recipeDetails = useSelector(state => state.detailsRecipe);
+    const { recipe } = recipeDetails;
+
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -24,7 +27,7 @@ export function Home() {
     }, [dispatch]);
 
     const cardEvents = card => {
-        console.log(card);
+        dispatch(detailsRecipe(card._id));
         handleShow()
     }
 
@@ -37,23 +40,24 @@ export function Home() {
                 </div>
                 <div className="home">
                     {newRecipes.map(recipe => (
-                        <>
-                            <div>
-                                <Recipe
-                                    key={recipe._id}
-                                    recipe={recipe}
-                                    cardEvents={cardEvents}
-                                />
-                                {show ?
-                                    <RecipeModal
-                                        show={show}
-                                        onHide={handleClose}
-                                        recipe={recipe}
-                                    />
-                                    : null}
-                            </div>
-                        </>
+                        <div>
+                            <Recipe
+                                key={recipe._id}
+                                recipe={recipe}
+                                cardEvents={cardEvents}
+                            />
+                        </div>
                     ))}
+                    {show ?
+                        <>
+                            <RecipeModal
+                                show={show}
+                                onHide={handleClose}
+                                recipe={recipe}
+                            />
+                            <div className="overlay active"></div>
+                        </>
+                        : null}
                 </div>
             </div>
             <div className="popular">
@@ -63,24 +67,24 @@ export function Home() {
                 </div>
                 <div className="home">
                     {mostPopularRecipes.map(recipe => (
-                        <>
-                            <div>
-                                <Recipe
-                                    key={recipe._id}
-                                    recipe={recipe}
-                                    cardEvents={cardEvents}
-                                />
-                                {show ?
-                                    <RecipeModal
-                                        key={recipe._id}
-                                        show={show}
-                                        onHide={handleClose}
-                                        recipe={recipe}
-                                    />
-                                    : null}
-                            </div>
-                        </>
+                        <div>
+                            <Recipe
+                                key={recipe._id}
+                                recipe={recipe}
+                                cardEvents={cardEvents}
+                            />
+                        </div>
                     ))}
+                    {show ?
+                        <>
+                            <RecipeModal
+                                show={show}
+                                onHide={handleClose}
+                                recipe={recipe}
+                            />
+                            <div className="overlay active"></div>
+                        </>
+                        : null}
                 </div>
             </div>
         </div>
