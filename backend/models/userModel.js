@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     },
     dateOfBirth: {
         type: String
+    },
+    isActivated: {
+        type: Boolean,
+        default: false
     }
 
 }, {

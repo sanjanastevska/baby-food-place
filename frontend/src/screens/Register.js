@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../actions/userActions';
 
-export function Register() {
+export function Register(props) {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
-    const [birthday, setBirthday] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
 
     // const redirect = props.location.search
     // ? props.location.search.split('=')[1]
-    // : '/';
+    // : '/login';
 
-    // const userRegister = useSelector(state => state.userRegister);
-    // const { userInfo } = userRegister;
+    const userRegister = useSelector(state => state.userRegister);
+    const { userInfo } = userRegister;
+    console.log("USERINFO:", userInfo)
 
     const dispatch = useDispatch();
     const submitHandler = e => {
@@ -24,7 +25,7 @@ export function Register() {
         if (password !== repeatPassword) {
             alert('Passwords do not match!');
         }
-        dispatch(register(firstName, lastName, email, password, birthday));
+        dispatch(register(firstName, lastName, email, password, repeatPassword, dateOfBirth));
     };
 
     // useEffect(() => {
@@ -110,7 +111,7 @@ export function Register() {
                                     id="birthday"
                                     placeholder="mm/dd/yyyy"
                                     required
-                                    onChange={e => setBirthday(e.target.value)}
+                                    onChange={e => setDateOfBirth(e.target.value)}
                                 />
                             </div>
                             <div>

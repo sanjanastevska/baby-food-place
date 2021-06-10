@@ -16,10 +16,17 @@ const register = async (req, res, next) => {
         lastName,
         email,
         password,
-        confirmation_password
+        confirmation_password,
+        dateOfBirth
     } = req.body;
 
     try {
+        console.log("FirstName:", firstName);
+        console.log("LastName:", lastName);
+        console.log("Email:", email);
+        console.log("Birthday:", dateOfBirth);
+        console.log("Password:", password);
+        console.log("confirmation_Password:", confirmation_password);
             if(!password) {
                 return res.status(400).send({
                     error: true,
@@ -41,6 +48,11 @@ const register = async (req, res, next) => {
                 });
             }
 
+            const salt = await bcrypt.genSalt(10);
+            req.body.password = bcrypt.hashSync(req.body.password, salt);
+
+            await User.create(req.body);            
+
             const token = jwt.sign({email, password}, config.get('mailer').jwt_key_activate, { expiresIn: '30d' });
 
             const data = {
@@ -49,7 +61,7 @@ const register = async (req, res, next) => {
                 subject: 'Account Activation Link',
                 html: `<h1>Hello ${firstName} ${lastName}</h1>
                 <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
-                <a href=${config.get('mailer').client_API}/confirm/${token}> Click here</a>`
+                <a href=${config.get('mailer').client_API}/api/users/activate-account/${email}/${token}> Click here</a>`
             };
 
             mg.messages().send(data, ((err, body) => {
@@ -75,8 +87,12 @@ const register = async (req, res, next) => {
 };
 
 const activateAccount = async (req, res, next) => {
-    const token = req.body.token;
-    const user = await User.findOne({ email: req.body.email});
+
+    const email = req.params.email;
+    const token = req.params.token;
+
+    console.log("Activating account:", email, token);
+
 
     if(token) {
         jwt.verify(token, config.get('mailer').jwt_key_activate, async (err) => {
@@ -86,23 +102,12 @@ const activateAccount = async (req, res, next) => {
                     message: 'Inccorect or expired link'
                 });
             }
-            if(user) {
-                return res.status(400).send({
-                    error: true,
-                    message: 'Bad request. User exists with the provided email.'
-                });
-            }
 
-            const salt = await bcrypt.genSalt(10);
-            req.body.password = bcrypt.hashSync(req.body.password, salt);
+            const filter = { email: email };
+            const updateActivated = { isActivated: true };
+            await User.findOneAndUpdate(filter, updateActivated);
 
-            await User.create(req.body);
-
-            res.status(201).send({
-              error: false,
-              message: 'You are now registered and can log in'
-            });
-            res.redirect('/users/login');
+            res.redirect('//localhost:3000/login');
         })
     } else{
         res.status(500).send({

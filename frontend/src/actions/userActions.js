@@ -11,7 +11,7 @@ import {
     USER_REGISTER_SUCCESS, 
     USER_LOGOUT} from '../constants/userConstants';
 
-export const register = (firstName, lastName, email, password, birthday) => async(dispach) => {
+export const register = (firstName, lastName, email, password, confirmation_password, dateOfBirth) => async(dispach) => {
     dispach({
         type: USER_REGISTER_REQUEST,
         payload: {
@@ -19,18 +19,15 @@ export const register = (firstName, lastName, email, password, birthday) => asyn
             lastName,
             email,
             password,
-            birthday
+            confirmation_password,
+            dateOfBirth
         }
     });
     try {
-        const { data } = await Axios.post('http://localhost:9001/api/users/register', { firstName, lastName, email, password, birthday });
+        const { data } = await Axios.post('http://localhost:9001/api/users/register', { firstName, lastName, email, password, confirmation_password, dateOfBirth });
+        console.log("DATA", data)
         dispach({
             type: USER_REGISTER_SUCCESS,
-            payload: data
-        });
-        //In App.js we read sigin to authenticate user
-        dispach({
-            type:USER_LOGIN_SUCCESS,
             payload: data
         });
     } catch(err) {
@@ -39,7 +36,7 @@ export const register = (firstName, lastName, email, password, birthday) => asyn
             payload: err.message
         });
     }
-}
+};
 
 export const login = (email, password) => async (dispach) => {
     dispach({

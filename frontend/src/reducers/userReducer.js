@@ -44,7 +44,6 @@ export const userRegisterReducer = (state = {}, action) => {
     }
 };
 
-
 export const updateUserReducer = (state = {}, action) => {
     switch(action.type) {
         case USER_UPDATE_REQUEST:
@@ -64,5 +63,3 @@ export const updateUserReducer = (state = {}, action) => {
             return state;
     }
 };
-
-// vo slucaj ako treba dopolnitel update na user vidi kaj amazona proekt

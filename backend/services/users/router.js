@@ -5,7 +5,7 @@ const userRouter = express.Router();
 
 userRouter.post('/register', controller.register)
     .post('/login', controller.login)
-    .post('/activate-account', controller.activateAccount)
+    .get('/activate-account/:email/:token', controller.activateAccount)
     .patch('/:id', controller.update)
 
   

@@ -2,17 +2,17 @@
     "database": {
         "host": "cluster0.stypi.mongodb.net",
         "port": 27017,
-        "username": "dev",
-        "password": "sanjadev1",
+        "username": "",
+        "password": "",
         "dbname": "finalProject"
     },
     "mailer": {
         "username": "api",
-        "api_key": "81dd49c1ba19314870edf0a30c6e7116-71b35d7e-c50684ae",
-        "domain": "sandbox9dad1b095a12493f9337f7cfdf79b7c4.mailgun.org",
-        "from": "Pero Perovski<pero@perovski.com>",
-        "client_API": "http://localhost:3000",
-        "jwt_key_activate": "activatteacount" 
+        "api_key": "",
+        "domain": "",
+        "from": "",
+        "client_API": "",
+        "jwt_key_activate": "" 
     },
     "auth": {
         "jwt_key": "secret_key123"
