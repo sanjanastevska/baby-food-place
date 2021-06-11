@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { register } from '../actions/userActions';
 
-export function Register(props) {
+export function Register() {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -11,13 +11,6 @@ export function Register(props) {
     const [repeatPassword, setRepeatPassword] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
 
-    // const redirect = props.location.search
-    // ? props.location.search.split('=')[1]
-    // : '/login';
-
-    const userRegister = useSelector(state => state.userRegister);
-    const { userInfo } = userRegister;
-    console.log("USERINFO:", userInfo)
 
     const dispatch = useDispatch();
     const submitHandler = e => {
@@ -27,12 +20,6 @@ export function Register(props) {
         }
         dispatch(register(firstName, lastName, email, password, repeatPassword, dateOfBirth));
     };
-
-    // useEffect(() => {
-    //     if(userInfo) {
-    //         props.history.push(redirect);
-    //     }
-    // }, [props.history, redirect, userInfo]);
 
     return (
         <div className="my-profile">

@@ -16,7 +16,7 @@ export function Recipe(props) {
                         <div className="card-info-left">
                             <i><img className=" card-info time" src="/images/icon_time.svg" alt="time"></img>{recipe.preparationTime + "min"}</i>
                             <i><img className="card-info plate" src="/images/icon_plate.svg" alt="plate"></img>{recipe.numberPeople + " persons"}</i>
-                            <i><img className="card-info star" src="/images/icon_star.svg" alt="star" onClick={() =>props.saveRating(recipe.rating)}></img>{recipe.rating}</i>
+                            <i><img className="card-info star" src="/images/icon_star.svg" alt="star" onClick={() =>props.saveRating(recipe)}></img>{recipe.rating}</i>
                         </div>
                         <div className="card-info-right">
                             <i><img onClick={() => props.cardEvents(recipe)} className="arrows" src="/images/icon_arrows_white.svg" alt="arrows"></img></i>

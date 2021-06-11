@@ -3,7 +3,7 @@ const multer = require('multer');
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
-    destination: './frontend/public/images/',
+    destination: './public/images/',
     filename: (req, file, cb) => {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
@@ -43,14 +43,14 @@ const upload = async (req, res) => {
                 message: 'No file uploaded'
             });
         }
-        const file = req.files.document;
-        console.log("FILE IN NODEJS:", file);
+        const imageFile = req.files.image;
+        console.log("FILE IN NODEJS:", imageFile);
 
-        file.mv(`${__dirname}/frontend/public/images/${file.name}`);
+        imageFile.mv(`${__dirname}/public/images/${imageFile.name}`);
         res.status(200).send({
             message: 'File is uploaded',
-            fileName: file.name,
-            filePath: `/images/${file.name}`
+            fileName: imageFile.name,
+            filePath: `/images/${imageFile.name}`
         })
     } catch (err) {    
         res.status(500).send({

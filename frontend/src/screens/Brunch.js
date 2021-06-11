@@ -4,17 +4,18 @@ import { detailsRecipe, listRecipesByCategory, rateRecipe } from '../actions/rec
 import { Recipe } from '../components/Recipe';
 import { Recipe as RecipeModal } from './Recipe'
 
-export function Brunch() {
+export function Brunch(props) {
 
-    // const [rating, setRating] = useState(0);
-    // const ratedRecipe = useSelector(state => state.rateRecipe);
-    // const { success: rateRecipeSuccess } = ratedRecipe;
+    const [rating, setRating] = useState(0);
 
     const recipeDetails = useSelector(state => state.detailsRecipe);
     const { recipe } = recipeDetails;
 
     const filterRecipes = useSelector(state => state.filterRecipes);
     const { recipes } = filterRecipes;
+
+    const ratedRecipe = useSelector(state => state.rateRecipe);
+    const { success : successRate } = ratedRecipe;
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -24,22 +25,23 @@ export function Brunch() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listRecipesByCategory("brunch"));
-        //     if (rateRecipeSuccess ) {
-        //         alert('Review submitted successfully.');
-        //         setRating(0);
-        //       }
-    }, [dispatch]);
+    }, [dispatch, props.history]);
+
+    const saveRating =  (recipe) => {
+        if (successRate) {
+            alert('Review submitted successfully.');
+        }
+        dispatch(rateRecipe(recipe._id));
+        setRating(recipe.rating);
+        // props.history.push("/brunch");
+        // setRating(0);
+    }
 
     const cardEvents = card => {
         console.log("CARD", card);
         dispatch(detailsRecipe(card._id))
         handleShow()
     }
-
-    // const saveRating = () => {
-    //     dispatch(rateRecipe(recipe._id, rating ));
-    // }
-
 
     return (
         <div className="homeScreen">
@@ -54,7 +56,7 @@ export function Brunch() {
                             key={recipe._id}
                             recipe={recipe}
                             cardEvents={cardEvents}
-                        // rating = {saveRating}
+                            saveRating = {saveRating}
                         />
                     </div>
                 ))}

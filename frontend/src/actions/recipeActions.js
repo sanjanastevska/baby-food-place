@@ -213,7 +213,7 @@ export const listRecipesByCategory = (category) => async (dispatch) => {
 };
 
 // rate
-export const rateRecipe = (recipeId, rating) => async(dispatch, getState) => {
+export const rateRecipe = (recipeId) => async(dispatch, getState) => {
     try {
         const {
             userLogin: { userInfo } 
@@ -221,15 +221,15 @@ export const rateRecipe = (recipeId, rating) => async(dispatch, getState) => {
 
         dispatch({
             type: RECIPE_RATING_REQUEST,
-            payload: rating
+            payload: recipeId
         });
-
-        const { data } = await Axios.post(`http://localhost:9002/api/recipes/${recipeId}/rating`, rating, {
-            headers: {Authorization: `Bearer ${userInfo.token}`}
+    
+        const { data } = await Axios.patch(`http://localhost:9002/api/recipes/rating/${recipeId}`,  {
+            headers: { Authorization: `Bearer ${userInfo.token}`}
         });
         dispatch({
             type: RECIPE_RATING_SUCCESS,
-            payload: data.rating
+            payload: data.rateRecipe
         });
         
     } catch(err) {

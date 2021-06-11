@@ -11,7 +11,6 @@ export function Breakfest() {
     const recipeDetails = useSelector(state => state.detailsRecipe);
     const { recipe } = recipeDetails;
 
-
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);

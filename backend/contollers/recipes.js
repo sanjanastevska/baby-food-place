@@ -144,24 +144,23 @@ const del = async (req, res, next) => {
     await next;
 }
 
-// const rating = async (req, res, next) => {
-//     try {
-//         const recipe = await Recipe.findById({ _id: req.params.id});
-//         const counter = 0
-//         recipe.rating = 
-
-//         res.status(200).send({
-//             error: false,
-//             recipe
-//         });
-//     } catch(err) {
-//         res.status(500).send({
-//             error: true,
-//             message: 'Recipe Not Found'
-//         });
-//     }
-//   await next;
-// }
+const rate = async (req, res, next) => {
+    try {
+        const rateRecipe = await Recipe.findByIdAndUpdate({ _id: req.params.id}, {$inc: {rating:1}}, {new:true}).exec();
+        console.log("RATE", rateRecipe)
+        res.status(200).send({
+            error: false,
+            message: 'Your Rate is Succesfully Submitted',
+            rateRecipe
+        });
+    } catch(err) {
+        res.status(500).send({
+            error: true,
+            message: 'Could Not Rate'
+        });
+    }
+  await next;
+}
 
 
 module.exports = {
@@ -173,7 +172,7 @@ module.exports = {
     newestRecipes,
     popularRecipes,
     filterByCategory,
-    // rating
+    rate
 };
 
 

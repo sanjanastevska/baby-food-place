@@ -60,6 +60,7 @@ export function Recipes(props) {
 
         
         const formData = new FormData();
+        formData.name = "FILE";
         formData.append('image', selectedFile);
 
         try {
@@ -86,7 +87,7 @@ export function Recipes(props) {
             props.history.push("/recipes");
         }
         dispatch(listRecipes(userInfo));
-    }, [userInfo]);
+    }, [userInfo, dispatch, props.history, successCreate, successUpdate]);
 
     const openModelUpdate = (recipe) => {
         setIsOpen(true);

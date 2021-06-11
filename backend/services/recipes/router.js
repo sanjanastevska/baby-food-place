@@ -11,8 +11,8 @@ recipeRouter
     .get('/:id', controller.fetchOne)
     .post('/', controller.create)
     .patch('/:id', controller.update)
+    .patch('/rating/:id', controller.rate)
     .delete('/:id', controller.del)
-    // .post('/:id/rating'. controller.rating)
 
   
 module.exports = recipeRouter;
