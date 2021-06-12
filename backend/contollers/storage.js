@@ -3,7 +3,9 @@ const multer = require('multer');
 
 // Set The Storage Engine
 const storage = multer.diskStorage({
-    destination: './public/images/',
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/')
+    },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
@@ -21,19 +23,20 @@ const allowedTypes = (file, cb) => {
     }
 }
 
-// Create an upload instance and receive a single file
-const uploadFile = multer({
+
+
+const upload = async (req, res, next) => {
+    console.log("IN UPLOAD:");
+    // Create an upload instance and receive a single file
+    const uploadFile = multer({
     storage,
     limits: { fieldSize: 1000000 },
     fileFilter: (req, file, cb) => {
     allowedTypes(file, cb);
     }
-}).single('image');
-
-const upload = async (req, res) => {
-    console.log("IN UPLOAD:");
+    }).single('image');
     try {
-        await uploadFile(req, res);
+        await uploadFile(req, res, next);
 
         console.log("AFTER UPLOAD:");
 
@@ -46,20 +49,22 @@ const upload = async (req, res) => {
         const imageFile = req.files.image;
         console.log("FILE IN NODEJS:", imageFile);
 
-        imageFile.mv(`${__dirname}/public/images/${imageFile.name}`);
+        imageFile.mv(`public/uploads/${imageFile.name}`);
         res.status(200).send({
             message: 'File is uploaded',
             fileName: imageFile.name,
-            filePath: `/images/${imageFile.name}`
+            filePath: `public/uploads/${imageFile.name}`
         })
     } catch (err) {    
         res.status(500).send({
             error: true,
-            message: `Could not upload the file: ${req.file.name}. ${err}`,
+            message: `Could not upload the file: ${err}`
         });
     }
+    await next;
 }
 
 module.exports = {
     upload
 }
+

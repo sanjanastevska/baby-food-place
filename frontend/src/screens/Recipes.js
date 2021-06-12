@@ -52,15 +52,8 @@ export function Recipes(props) {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if (canCreateRecipe) {
-            dispatch(createRecipe({ title, image, category, preparationTime, numberPeople, description, recipeDesc }));
-        } else {
-            dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
-        }
 
-        
         const formData = new FormData();
-        formData.name = "FILE";
         formData.append('image', selectedFile);
 
         try {
@@ -72,13 +65,17 @@ export function Recipes(props) {
                 }
             });
 
-            console.log("Fetch Data Before 2222")
-
-            const { fileName, filePath } = data.data;
-            console.log("FileName:", fileName, "FilePath:", filePath)
+            console.log("Data after fetching:", data)
+            const { fileName, filePath } = data;
             setImage({ fileName, filePath });
         } catch (err) {
             alert("Could not upload the file!");
+        }
+
+        if (canCreateRecipe) {
+            dispatch(createRecipe({ title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+        } else {
+            dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
         }
     };
 
@@ -135,9 +132,9 @@ export function Recipes(props) {
                     <form className="form-recipe-container" onSubmit={submitHandler}>
                         <div className="recipe-image-wrapper">
                             <label className="recipe-image-text" htmlFor="image">Recipe Image</label>
-                            <img id="small-image" src={image.filePath} alt={image.fileName} />
+                            <img id="small-image"  src={image.filePath} alt={image.fileName} />
                             <label className="upload-btn">
-                                <input type="file" onChange={onChangeHandler} />
+                                <input type="file" name="image" onChange={onChangeHandler} />
                                 UPLOAD IMAGE
                             </label>
                             {/* <input

@@ -33,9 +33,6 @@ app.use('/api/storage', proxy(
     }
 ));
 
-// app.use('/images', express.static(path.resolve(__dirname, './frontend/public/images')));
-app.use('/', express.static(`${__dirname}/../../public/images`));
-
 const PORT = process.env.PORT || config.get('ports').proxy;
 
 app.listen(PORT, err => {
