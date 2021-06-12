@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsRecipe, listRecipesByCategory } from '../actions/recipeActions';
+import { detailsRecipe, listRecipesByCategory, rateRecipe } from '../actions/recipeActions';
 import { Recipe } from '../components/Recipe';
 import { Recipe as RecipeModal } from './Recipe'
 
 
-export function Dinner() {
+export function Dinner(props) {
+
+    const [rating, setRating] = useState(0);
+
     const filterRecipes = useSelector(state => state.filterRecipes);
     const { recipes } = filterRecipes;
 
     const recipeDetails = useSelector(state => state.detailsRecipe);
     const { recipe } = recipeDetails;
+
+    const ratedRecipe = useSelector(state => state.rateRecipe);
+    const { success : successRate } = ratedRecipe;
+
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -27,6 +36,20 @@ export function Dinner() {
         handleShow()
     }
 
+    const saveRating =  (recipe) => {
+        if(!userInfo) {
+            alert('You need to log in in order to perform this action.');
+            props.history.push("/login");
+        }
+
+        dispatch(rateRecipe(recipe._id));
+        setRating(recipe.rating);
+        if (successRate) {
+            alert('Review submitted successfully.');
+            dispatch(listRecipesByCategory("dinner"));
+        }
+    }
+
     return (
         <div className="homeScreen">
             <div className="filter-wrapper">
@@ -40,6 +63,7 @@ export function Dinner() {
                             key={recipe._id}
                             recipe={recipe}
                             cardEvents={cardEvents}
+                            saveRating = {saveRating}
                         />
                     </div>
                 ))}

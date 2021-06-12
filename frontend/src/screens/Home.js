@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsRecipe, listNewestRecipes, listPopularRecipes } from '../actions/recipeActions';
+import { detailsRecipe, listNewestRecipes, listPopularRecipes, rateRecipe } from '../actions/recipeActions';
 import { Recipe } from '../components/Recipe';
 import { Recipe as RecipeModal } from './Recipe';
 
-export function Home() {
+export function Home(props) {
+
+    const [rating, setRating] = useState(0);
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -19,6 +21,12 @@ export function Home() {
     const recipeDetails = useSelector(state => state.detailsRecipe);
     const { recipe } = recipeDetails;
 
+    const ratedRecipe = useSelector(state => state.rateRecipe);
+    const { success : successRate } = ratedRecipe;
+
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -30,6 +38,20 @@ export function Home() {
         dispatch(detailsRecipe(card._id));
         handleShow()
     }
+
+    const saveRating =  (recipe) => {
+        if(!userInfo) {
+            alert('You need to log in in order to perform this action.');
+            props.history.push("/login");
+        }
+        dispatch(rateRecipe(recipe._id));
+        setRating(recipe.rating);
+        if (successRate) {
+            alert('Review submitted successfully.');
+            dispatch(listPopularRecipes());
+            dispatch(listNewestRecipes());
+        }
+    };
 
     return (
         <div className="homeScreen" >
@@ -45,6 +67,7 @@ export function Home() {
                                 key={recipe._id}
                                 recipe={recipe}
                                 cardEvents={cardEvents}
+                                saveRating = {saveRating}
                             />
                         </div>
                     ))}
@@ -72,6 +95,7 @@ export function Home() {
                                 key={recipe._id}
                                 recipe={recipe}
                                 cardEvents={cardEvents}
+                                saveRating = {saveRating}
                             />
                         </div>
                     ))}

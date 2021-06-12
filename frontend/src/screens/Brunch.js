@@ -17,6 +17,9 @@ export function Brunch(props) {
     const ratedRecipe = useSelector(state => state.rateRecipe);
     const { success : successRate } = ratedRecipe;
 
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin;
+
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
@@ -25,20 +28,23 @@ export function Brunch(props) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listRecipesByCategory("brunch"));
-    }, [dispatch, props.history]);
+    }, [dispatch]);
 
     const saveRating =  (recipe) => {
-        if (successRate) {
-            alert('Review submitted successfully.');
+        if(!userInfo) {
+            alert('You need to log in in order to perform this action.');
+            props.history.push("/login");
         }
+
         dispatch(rateRecipe(recipe._id));
         setRating(recipe.rating);
-        // props.history.push("/brunch");
-        // setRating(0);
+        if (successRate) {
+            alert('Review submitted successfully.');
+            dispatch(listRecipesByCategory("brunch"));
+        }
     }
 
     const cardEvents = card => {
-        console.log("CARD", card);
         dispatch(detailsRecipe(card._id))
         handleShow()
     }
