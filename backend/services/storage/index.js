@@ -9,10 +9,11 @@ const api = express();
 
 api.use(cors());
 api.use(fileUpload());
-// api.use(express.static('frontend/public/uploads'));
+// api.use('/uploads',express.static('public/uploads'));
 // api.use('/uploads', express.static(path.join(process.cwd() + '/uploads')));
 api.use('/api/storage', router);
 
+api.use('/',express.static(`${__dirname}/../../../frontend/public/uploads`));
 // api.get('/', function(req, res) {
 //   res.sendFile(path.join(process.cwd() + '/index.html'));
 // });

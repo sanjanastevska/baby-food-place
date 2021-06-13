@@ -14,7 +14,7 @@ export function Recipes(props) {
     const [description, setDescription] = useState("");
     const [recipeDesc, setRecipeDesc] = useState("");
 
-    const [selectedFile, setSelectedFile] = useState('');
+    const [selectedFile, setSelectedFile] = useState("");
 
     const [isOpen, setIsOpen] = useState(false);
     const [id, setId] = useState("");
@@ -50,8 +50,20 @@ export function Recipes(props) {
         props.history.push("/recipes");
     }
 
+    const onChangeHandler = e => {
+        // Log event.target.files , it is an array of all stored files.  target.files[0]holds the actual file and its details.
+        const file = setSelectedFile(e.target.files[0]);
+        console.log("Select:", e.target.files[0])
+    }
+
     const submitHandler = async (e) => {
         e.preventDefault();
+
+        if (canCreateRecipe) {
+            dispatch(createRecipe({ title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+        } else {
+            dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+        }
 
         const formData = new FormData();
         formData.append('image', selectedFile);
@@ -61,35 +73,28 @@ export function Recipes(props) {
             const { data } = await Axios.post(`http://localhost:9003/api/storage/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    Authorization: `Bearer ${userInfo.token}`
+                    // Authorization: `Bearer ${userInfo.token}`
                 }
             });
 
             console.log("Data after fetching:", data)
-            const { fileName, filePath } = data;
-            setImage({ fileName, filePath });
+            console.log("DATA", data.imageFile.data)
+            setImage(data.imageFile.data);
         } catch (err) {
             alert("Could not upload the file!");
-        }
-
-        if (canCreateRecipe) {
-            dispatch(createRecipe({ title, image, category, preparationTime, numberPeople, description, recipeDesc }));
-        } else {
-            dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
         }
     };
 
     useEffect(() => {
-        if (successCreate || successUpdate) {
-            props.history.push("/recipes");
-        }
+        // if (successCreate || successUpdate) {
+        //     props.history.push("/recipes");
+        // }
         dispatch(listRecipes(userInfo));
     }, [userInfo, dispatch, props.history, successCreate, successUpdate]);
 
     const openModelUpdate = (recipe) => {
         setIsOpen(true);
         setCanCreateRecipe(false);
-        // const productId = props.match.params.id;
         setId(recipe._id);
         setTitle(recipe.title);
         setImage(recipe.image);
@@ -113,13 +118,6 @@ export function Recipes(props) {
         setRecipeDesc("");
     };
 
-    const onChangeHandler = e => {
-        // Log event.target.files , it is an array of all stored files.  target.files[0]holds the actual file and its details.
-        setSelectedFile(e.target.files[0]);
-        console.log("Select:", e.target.files[0])
-    }
-
-
     return (
         <div className="my-profile">
             {isOpen ? (
@@ -132,17 +130,11 @@ export function Recipes(props) {
                     <form className="form-recipe-container" onSubmit={submitHandler}>
                         <div className="recipe-image-wrapper">
                             <label className="recipe-image-text" htmlFor="image">Recipe Image</label>
-                            <img id="small-image"  src={image.filePath} alt={image.fileName} />
+                            <img id="small-image"  src={image}/>
                             <label className="upload-btn">
                                 <input type="file" name="image" onChange={onChangeHandler} />
                                 UPLOAD IMAGE
                             </label>
-                            {/* <input
-                                type="text"
-                                id="small-image"
-                                value={image}
-                                onChange={e => setImage(e.target.value)}
-                            /> */}
                         </div>
                         <div className="recipe-info-wrapper-one">
                             <div>

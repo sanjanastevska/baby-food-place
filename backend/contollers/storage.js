@@ -23,10 +23,7 @@ const allowedTypes = (file, cb) => {
     }
 }
 
-
-
 const upload = async (req, res, next) => {
-    console.log("IN UPLOAD:");
     // Create an upload instance and receive a single file
     const uploadFile = multer({
     storage,
@@ -38,8 +35,6 @@ const upload = async (req, res, next) => {
     try {
         await uploadFile(req, res, next);
 
-        console.log("AFTER UPLOAD:");
-
         if (req.file === null) {
             res.status(500).send({
                 error: true,
@@ -47,13 +42,12 @@ const upload = async (req, res, next) => {
             });
         }
         const imageFile = req.files.image;
-        console.log("FILE IN NODEJS:", imageFile);
-
-        imageFile.mv(`public/uploads/${imageFile.name}`);
+        imageFile.mv(`${__dirname}/../../frontend/public/uploads/${imageFile.name}`);
         res.status(200).send({
             message: 'File is uploaded',
             fileName: imageFile.name,
-            filePath: `public/uploads/${imageFile.name}`
+            filePath: `uploads/${imageFile.name}`,
+            imageFile
         })
     } catch (err) {    
         res.status(500).send({

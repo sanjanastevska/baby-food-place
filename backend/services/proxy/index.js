@@ -33,6 +33,8 @@ app.use('/api/storage', proxy(
     }
 ));
 
+// app.use('/',express.static(`${__dirname}/../../../public/uploads`));
+
 const PORT = process.env.PORT || config.get('ports').proxy;
 
 app.listen(PORT, err => {
