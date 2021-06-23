@@ -8,6 +8,7 @@ recipeRouter
     .get('/popular', controller.popularRecipes)
     .get('/filter', controller.filterByCategory)
     .get('/', controller.fetch)
+    .get('/user-recipes', controller.fetchRecipesByUser)
     .get('/:id', controller.fetchOne)
     .post('/', controller.create)
     .patch('/:id', controller.update)

@@ -45,9 +45,10 @@ export function Recipes(props) {
             alert('The recipe is successfully deleted!');
         }
         setRecipesRow([
-            ...recipesRow.filter(recipe => id !== recipe._id)
+            ...recipesRow.filter(recipe => id !== recipe._id),
+            dispatch(listRecipes(userInfo))
         ]);
-        props.history.push("/recipes");
+        // props.history.push("/recipes");
     }
 
     const onChangeHandler = e => {
@@ -67,28 +68,28 @@ export function Recipes(props) {
 
         const formData = new FormData();
         formData.append('image', selectedFile);
-
+        console.log("formData:", formData);
         try {
             console.log("Fetch Data Before:")
             const { data } = await Axios.post(`http://localhost:9003/api/storage/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    // Authorization: `Bearer ${userInfo.token}`
+                    Authorization: `Bearer ${userInfo.token}`
                 }
             });
-
-            console.log("Data after fetching:", data)
-            console.log("DATA", data.imageFile.data)
-            setImage(data.imageFile.data);
+            console.log("Data after fetching:", data);
+            const { imageFile } = data;
+            console.log("imageFile:", imageFile.data);
+            setImage(data.filePath);
         } catch (err) {
             alert("Could not upload the file!");
         }
     };
 
     useEffect(() => {
-        // if (successCreate || successUpdate) {
-        //     props.history.push("/recipes");
-        // }
+        if (successCreate || successUpdate) {
+            props.history.push("/recipes");
+        }
         dispatch(listRecipes(userInfo));
     }, [userInfo, dispatch, props.history, successCreate, successUpdate]);
 
@@ -103,14 +104,13 @@ export function Recipes(props) {
         setNumberPeople(recipe.numberPeople);
         setDescription(recipe.description);
         setRecipeDesc(recipe.recipe);
-
     }
 
     const openModelCreate = () => {
         setIsOpen(true);
         setCanCreateRecipe(true);
         setTitle("");
-        setImage("");
+        setImage(null);
         setCategory("");
         setPreparationTime(0);
         setNumberPeople(0);
@@ -130,7 +130,7 @@ export function Recipes(props) {
                     <form className="form-recipe-container" onSubmit={submitHandler}>
                         <div className="recipe-image-wrapper">
                             <label className="recipe-image-text" htmlFor="image">Recipe Image</label>
-                            <img id="small-image"  src={image}/>
+                            <img id="small-image"  src={image} onChange={(e) => setImage(e.target.value)}/>
                             <label className="upload-btn">
                                 <input type="file" name="image" onChange={onChangeHandler} />
                                 UPLOAD IMAGE
@@ -227,8 +227,8 @@ export function Recipes(props) {
                             {recipes && recipes.map((recipe, i) => {
                                 const date = Moment(recipe.createdAt).format("DD.MM.YYYY")
                                 return (
-                                    <tr className="tr-body" key={i} onClick={() => openModelUpdate(recipe)} >
-                                        <td className="title-cell">{recipe.title}</td>
+                                    <tr className="tr-body" key={i}>
+                                        <td className="title-cell"  onClick={() => openModelUpdate(recipe)}>{recipe.title}</td>
                                         <td className="category-cell">
                                             <div className="category-cell-text">
                                                 {recipe.category}
@@ -245,7 +245,6 @@ export function Recipes(props) {
                     </table>
                 </>
             )}
-
         </div>
     )
 }

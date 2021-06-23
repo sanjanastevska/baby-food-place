@@ -1,4 +1,6 @@
+
 const Recipe = require('../models/recipeModel');
+const { User} = require('../models/userModel');
 
 const newestRecipes = async (_, res, next) => {
     try {
@@ -18,7 +20,7 @@ const newestRecipes = async (_, res, next) => {
 
 const popularRecipes = async(_, res, next) => {
     try {
-        const getTheMostPopularRecipes = await Recipe.find({}).sort({ rating: -1 }).exec();
+        const getTheMostPopularRecipes = await Recipe.find({}).sort({ rating: -1 }).limit(6).exec();
 
         res.status(200).send({
             error: false,
@@ -162,10 +164,31 @@ const rate = async (req, res, next) => {
   await next;
 }
 
+const fetchRecipesByUser = async(req, res, next) => {
+    try {
+        // const userId = req.body.user;
+        console.log(req.query['user._id'])
+        const userRecipes = await Recipe.find({'user': req.query['user']}).populate('user', {firstName: 1, lastName: 1}).exec();
+        console.log(userRecipes)
+        res.status(200).send({
+            error: false,
+            // userId,
+            userRecipes
+        });
+    } catch(err) {
+        res.status(500).send({
+            error: true,
+            message: err.message
+        });
+    }
+    await next;
+}
+
 
 module.exports = {
     fetch,
     fetchOne,
+    fetchRecipesByUser,
     create,
     update,
     del,

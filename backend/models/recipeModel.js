@@ -6,6 +6,10 @@ const recipeSchema = mongoose.Schema({
         unique: true,
         // required: true
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     image: {
         type: String,
         // required: true

@@ -21,12 +21,6 @@ const register = async (req, res, next) => {
     } = req.body;
 
     try {
-        console.log("FirstName:", firstName);
-        console.log("LastName:", lastName);
-        console.log("Email:", email);
-        console.log("Birthday:", dateOfBirth);
-        console.log("Password:", password);
-        console.log("confirmation_Password:", confirmation_password);
             if(!password) {
                 return res.status(400).send({
                     error: true,

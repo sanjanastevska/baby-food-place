@@ -42,6 +42,7 @@ const upload = async (req, res, next) => {
             });
         }
         const imageFile = req.files.image;
+        console.log("Image:", imageFile);
         imageFile.mv(`${__dirname}/../../frontend/public/uploads/${imageFile.name}`);
         res.status(200).send({
             message: 'File is uploaded',
