@@ -149,7 +149,6 @@ const del = async (req, res, next) => {
 const rate = async (req, res, next) => {
     try {
         const rateRecipe = await Recipe.findByIdAndUpdate({ _id: req.params.id}, {$inc: {rating:1}}, {new:true}).exec();
-        console.log("RATE", rateRecipe)
         res.status(200).send({
             error: false,
             message: 'Your Rate is Succesfully Submitted',
@@ -166,13 +165,9 @@ const rate = async (req, res, next) => {
 
 const fetchRecipesByUser = async(req, res, next) => {
     try {
-        // const userId = req.body.user;
-        console.log(req.query['user._id'])
         const userRecipes = await Recipe.find({'user': req.query['user']}).populate('user', {firstName: 1, lastName: 1}).exec();
-        console.log(userRecipes)
         res.status(200).send({
             error: false,
-            // userId,
             userRecipes
         });
     } catch(err) {

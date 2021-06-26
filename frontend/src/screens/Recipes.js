@@ -1,7 +1,7 @@
 import React, { useEffect, useState, } from 'react';
 import Moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { listRecipes, deleteRecipe, updateRecipe, createRecipe } from '../actions/recipeActions';
+import { deleteRecipe, updateRecipe, createRecipe, listUserRecipes } from '../actions/recipeActions';
 import Axios from 'axios';
 
 export function Recipes(props) {
@@ -20,9 +20,10 @@ export function Recipes(props) {
     const [id, setId] = useState("");
     const [canCreateRecipe, setCanCreateRecipe] = useState(false)
 
-    const recipesList = useSelector(state => state.recipesList);
-    const { recipes } = recipesList;
-    const [recipesRow, setRecipesRow] = useState(recipes);
+    const  recipesUserList = useSelector(state => state.recipesUserList);
+    const { userRecipes } = recipesUserList;
+    
+    const [recipesRow, setRecipesRow] = useState(userRecipes );
     const dispatch = useDispatch();
 
     const userStatus = useSelector(state => state.userLogin);
@@ -33,7 +34,6 @@ export function Recipes(props) {
 
     const updatedRecipe = useSelector(state => state.updateRecipe);
     const { successUpdate } = updatedRecipe
-
 
     const deletedRecipe = useSelector(state => state.deleteRecipe);
     const { success } = deletedRecipe;
@@ -46,7 +46,7 @@ export function Recipes(props) {
         }
         setRecipesRow([
             ...recipesRow.filter(recipe => id !== recipe._id),
-            dispatch(listRecipes(userInfo))
+            dispatch(listUserRecipes(userInfo))
         ]);
         // props.history.push("/recipes");
     }
@@ -90,8 +90,8 @@ export function Recipes(props) {
         if (successCreate || successUpdate) {
             props.history.push("/recipes");
         }
-        dispatch(listRecipes(userInfo));
-    }, [userInfo, dispatch, props.history, successCreate, successUpdate]);
+        dispatch(listUserRecipes(userInfo.user._id));
+    }, [userInfo.user._id, dispatch, props.history, successCreate, successUpdate]);
 
     const openModelUpdate = (recipe) => {
         setIsOpen(true);
@@ -224,7 +224,7 @@ export function Recipes(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {recipes && recipes.map((recipe, i) => {
+                            {userRecipes  && userRecipes.map((recipe, i) => {
                                 const date = Moment(recipe.createdAt).format("DD.MM.YYYY")
                                 return (
                                     <tr className="tr-body" key={i}>

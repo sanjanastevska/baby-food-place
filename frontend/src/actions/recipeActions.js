@@ -15,9 +15,6 @@ import {
     RECIPE_POPULAR_LIST_FAIL, 
     RECIPE_POPULAR_LIST_REQUEST, 
     RECIPE_POPULAR_LIST_SUCCESS, 
-    RECIPE_SAVE_FAIL, 
-    RECIPE_SAVE_REQUEST, 
-    RECIPE_SAVE_SUCCESS,
     RECIPE_LIST_BY_CATEGORY_REQUEST,
     RECIPE_LIST_BY_CATEGORY_SUCCESS,
     RECIPE_LIST_BY_CATEGORY_FAIL,
@@ -29,7 +26,10 @@ import {
     RECIPE_CREATE_FAIL,
     RECIPE_RATING_REQUEST,
     RECIPE_RATING_SUCCESS,
-    RECIPE_RATING_FAIL} from "../constants/recipeConstants";
+    RECIPE_RATING_FAIL,
+    USER_RECIPE_LIST_REQUEST,
+    USER_RECIPE_LIST_SUCCESS,
+    USER_RECIPE_LIST_FAIL} from "../constants/recipeConstants";
 
 // fetch recipes
 export const listRecipes = () => async(dispatch) => {
@@ -45,6 +45,32 @@ export const listRecipes = () => async(dispatch) => {
     } catch(err) {
         dispatch({
             type: RECIPE_LIST_FAIL,
+            payload: err.message
+        });
+    }
+};
+
+// fetch recipes by user
+export const listUserRecipes = (user) => async(dispatch, getState) => {
+    dispatch({
+        type: USER_RECIPE_LIST_REQUEST,
+        payload: user
+    });
+    const {
+        userLogin: { userInfo } 
+    } = getState();
+    try {
+        const { data } = await Axios.get(`http://localhost:9002/api/recipes/user-recipes?user=${user}`, {
+            headers: {Authorization: `Bearer ${userInfo.token}`}
+        });
+
+        dispatch({
+            type: USER_RECIPE_LIST_SUCCESS,
+            payload: data.userRecipes
+        });
+    } catch(err) {
+        dispatch({
+            type: USER_RECIPE_LIST_FAIL,
             payload: err.message
         });
     }
@@ -79,7 +105,7 @@ export const createRecipe = (recipe) => async (dispatch, getState) => {
             payload: recipe
         });
 
-            const {
+         const {
             userLogin: { userInfo } 
         } = getState();
 

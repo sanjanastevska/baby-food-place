@@ -24,7 +24,10 @@ import {
     RECIPE_RATING_SUCCESS, 
     RECIPE_UPDATE_FAIL,
     RECIPE_UPDATE_REQUEST,
-    RECIPE_UPDATE_SUCCESS} from "../constants/recipeConstants";
+    RECIPE_UPDATE_SUCCESS,
+    USER_RECIPE_LIST_FAIL,
+    USER_RECIPE_LIST_REQUEST,
+    USER_RECIPE_LIST_SUCCESS} from "../constants/recipeConstants";
 
 const initialState = {
     recipes: []
@@ -41,6 +44,27 @@ export const recipesListReducer = ( state = initialState, action) => {
                 recipes: action.payload.recipes
             };
         case RECIPE_LIST_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            };
+        default:
+            return state;
+    }
+};
+
+export const recipesUserListReducer = ( state = { userRecipes: [] }, action) => {
+    switch(action.type) {
+        case USER_RECIPE_LIST_REQUEST:
+            return {
+                ...state
+            };
+        case USER_RECIPE_LIST_SUCCESS:
+            return {
+                ...state,
+                userRecipes: action.payload,
+            };
+        case USER_RECIPE_LIST_FAIL:
             return {
                 ...state,
                 error: action.payload
