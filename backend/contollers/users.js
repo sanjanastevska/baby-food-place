@@ -85,9 +85,6 @@ const activateAccount = async (req, res, next) => {
     const email = req.params.email;
     const token = req.params.token;
 
-    console.log("Activating account:", email, token);
-
-
     if(token) {
         jwt.verify(token, config.get('mailer').jwt_key_activate, async (err) => {
             if(err) {

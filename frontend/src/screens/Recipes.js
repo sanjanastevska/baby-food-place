@@ -22,7 +22,7 @@ export function Recipes(props) {
 
     const  recipesUserList = useSelector(state => state.recipesUserList);
     const { userRecipes } = recipesUserList;
-    
+
     const [recipesRow, setRecipesRow] = useState(userRecipes );
     const dispatch = useDispatch();
 
@@ -61,7 +61,7 @@ export function Recipes(props) {
         e.preventDefault();
 
         if (canCreateRecipe) {
-            dispatch(createRecipe({ title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+            dispatch(createRecipe({ title, user: userInfo.user._id, image, category, preparationTime, numberPeople, description, recipeDesc }));
         } else {
             dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
         }
