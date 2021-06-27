@@ -20,10 +20,10 @@ export function Recipes(props) {
     const [id, setId] = useState("");
     const [canCreateRecipe, setCanCreateRecipe] = useState(false)
 
-    const  recipesUserList = useSelector(state => state.recipesUserList);
+    const recipesUserList = useSelector(state => state.recipesUserList);
     const { userRecipes } = recipesUserList;
 
-    const [recipesRow, setRecipesRow] = useState(userRecipes );
+    const [recipesRow, setRecipesRow] = useState(userRecipes);
     const dispatch = useDispatch();
 
     const userStatus = useSelector(state => state.userLogin);
@@ -46,14 +46,13 @@ export function Recipes(props) {
         }
         setRecipesRow([
             ...recipesRow.filter(recipe => id !== recipe._id),
-            dispatch(listUserRecipes(userInfo))
         ]);
-        // props.history.push("/recipes");
+        dispatch(listUserRecipes(userInfo.user._id))
+        props.history.push("/recipes");
     }
 
     const onChangeHandler = e => {
-        // Log event.target.files , it is an array of all stored files.  target.files[0]holds the actual file and its details.
-        const file = setSelectedFile(e.target.files[0]);
+        setSelectedFile(e.target.files[0]);
         console.log("Select:", e.target.files[0])
     }
 
@@ -68,19 +67,16 @@ export function Recipes(props) {
 
         const formData = new FormData();
         formData.append('image', selectedFile);
-        console.log("formData:", formData);
         try {
-            console.log("Fetch Data Before:")
             const { data } = await Axios.post(`http://localhost:9003/api/storage/upload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${userInfo.token}`
                 }
             });
-            console.log("Data after fetching:", data);
             const { imageFile } = data;
-            console.log("imageFile:", imageFile.data);
-            setImage(data.filePath);
+            const getImage = await Axios.get(`http://localhost:9003/api/storage/files/${imageFile.name}`);
+            setImage(getImage)
         } catch (err) {
             alert("Could not upload the file!");
         }
@@ -130,7 +126,7 @@ export function Recipes(props) {
                     <form className="form-recipe-container" onSubmit={submitHandler}>
                         <div className="recipe-image-wrapper">
                             <label className="recipe-image-text" htmlFor="image">Recipe Image</label>
-                            <img id="small-image"  src={image} onChange={(e) => setImage(e.target.value)}/>
+                            <img id="small-image" src={image} alt = {image} onChange={(e) => setImage(e.target.value)} />
                             <label className="upload-btn">
                                 <input type="file" name="image" onChange={onChangeHandler} />
                                 UPLOAD IMAGE
@@ -224,11 +220,11 @@ export function Recipes(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {userRecipes  && userRecipes.map((recipe, i) => {
+                            {userRecipes && userRecipes.map((recipe, i) => {
                                 const date = Moment(recipe.createdAt).format("DD.MM.YYYY")
                                 return (
                                     <tr className="tr-body" key={i}>
-                                        <td className="title-cell"  onClick={() => openModelUpdate(recipe)}>{recipe.title}</td>
+                                        <td className="title-cell" onClick={() => openModelUpdate(recipe)}>{recipe.title}</td>
                                         <td className="category-cell">
                                             <div className="category-cell-text">
                                                 {recipe.category}

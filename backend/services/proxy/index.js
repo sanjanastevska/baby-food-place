@@ -1,6 +1,5 @@
 const express = require('express');
 const proxy = require('express-http-proxy');
-const path = require('path');
 const config = require('../../config/index');
 
 const app = express();
@@ -32,8 +31,6 @@ app.use('/api/storage', proxy(
         }
     }
 ));
-
-// app.use('/',express.static(`${__dirname}/../../../public/uploads`));
 
 const PORT = process.env.PORT || config.get('ports').proxy;
 

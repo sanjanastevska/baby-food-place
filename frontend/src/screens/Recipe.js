@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { detailsRecipe } from '../actions/recipeActions';
-
+import React from 'react';
 
 export function Recipe(props) {
     const { recipe } = props;
-    console.log("PROPS:" , props)
-    
+
     return (
-        <div className="recipe-dialog active" show ={props.show}>
+        <div className="recipe-dialog active" show={props.show}>
             <div className="recipe-header">
                 <div className="title">{recipe.title}</div>
-                    <img className="close" src="/images/icon_close.svg" alt="close" onClick={() => props.onHide()}></img>
+                <img className="close" src="/images/icon_close.svg" alt="close" onClick={() => props.onHide()}></img>
             </div>
             <div className="recipe-body">
                 <div className="recipe-left-column">

@@ -7,15 +7,6 @@ const config = require('../../config/index.js');
 const api = express();
 
 api.use(express.json());
-
-// api.use((err, req, res, next) => {
-//   if(err.name === 'UnauthorizedError') {
-//     res.status(401).send({
-//       error: true,
-//       message: 'You need to log in in order to perform this action'
-//     });
-//   }
-// });
 api.use(cors());
 api.use('/api/recipes', recipeRouter);
 

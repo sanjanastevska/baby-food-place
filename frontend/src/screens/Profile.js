@@ -37,7 +37,7 @@ export function Profile() {
         setRepeatPassword(repeatPassword);
         setBirthday(birthday);
         // setAvatar(avatar);
-    }, [dispatch, userInfo._id]);  //koga user od null preminuva vo objekt useEfekt uste ednas ranuva
+    }, [dispatch,birthday, firstName, lastName, email, password, repeatPassword, userInfo._id]);  
 
     return (
         <div className="my-profile">

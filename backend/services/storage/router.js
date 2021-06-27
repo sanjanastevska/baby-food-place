@@ -4,6 +4,6 @@ const controller = require('../../contollers/storage');
 const storageRouter = express.Router();
 
 storageRouter.post('/upload', controller.upload)
-    //   .get('/:filename', controller.fetch)
+      .get('/files/:name', controller.download)
 
 module.exports = storageRouter;

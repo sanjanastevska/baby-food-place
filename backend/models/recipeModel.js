@@ -3,36 +3,29 @@ const mongoose = require('mongoose');
 const recipeSchema = mongoose.Schema({
     title: {
         type: String,
-        unique: true,
-        // required: true
+        unique: true
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     image: {
-        type: String,
-        // required: true
+        type: String
     },
     category: {
-        type: String,
-        // required: true
+        type: String
     },
     preparationTime: {
-        type: Number,
-        // required: true
+        type: Number
     },
     numberPeople: {
-        type: Number,
-        // required: true
+        type: Number
     },
     description: {
-        type: String,
-        // required: true
+        type: String
     },
     recipe: {
-        type: String,
-        // required: true
+        type: String
     },
     rating: {
         type: Number,

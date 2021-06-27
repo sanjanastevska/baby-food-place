@@ -1,32 +1,12 @@
 require('../../db');
 const express = require('express');
 const cors = require('cors');
-// const jwt = require('express-jwt');
 const userRouter = require('./router');
 const config = require('../../config/index.js');
 
 const api = express();
 
 api.use(express.json());
-
-// api.use(jwt({
-//   secret: config.get('auth').jwt_key,
-//   algorithms: ['HS256']
-// }).unless({
-//   path: [
-//     'api/users/register',
-//     'api/users/login'
-//   ]
-// }));
-
-// api.use((err, req, res, next) => {
-//   if(err.name === 'UnauthorizedError') {
-//     res.status(401).send({
-//       error: true,
-//       message: 'You need to log in in order to perform this action'
-//     });
-//   }
-// });
 api.use(cors());
 api.use('/api/users', userRouter);
 

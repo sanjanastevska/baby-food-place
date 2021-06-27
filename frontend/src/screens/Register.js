@@ -14,7 +14,7 @@ export function Register() {
 
     const dispatch = useDispatch();
     const submitHandler = e => {
-        e.preventDefault();   //when clicked on the button the form will not be refreshed
+        e.preventDefault();  
         if (password !== repeatPassword) {
             alert('Passwords do not match!');
         }

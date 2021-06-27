@@ -31,7 +31,6 @@ export function Dinner(props) {
     }, [dispatch]);
 
     const cardEvents = card => {
-        console.log(card);
         dispatch(detailsRecipe(card._id))
         handleShow()
     }

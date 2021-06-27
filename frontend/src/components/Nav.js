@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { logout } from '../actions/userActions';
 
 export function Nav() {
@@ -17,13 +17,13 @@ export function Nav() {
         <nav className="navbar">
             <Link to="/"><img src="/images/logo_color.svg" alt="logo" className="logo" /></Link>
             <ul className="nav-menu">
-                <li><Link to="/breakfest" className="nav-links">Breakfest </Link></li>
+                <li><NavLink to="/breakfest" className="nav-links" activeClassName='is-active'>Breakfest </NavLink></li>
                 <li><span className="dot"></span></li>
-                <li><Link to="/brunch" className="nav-links">Brunch</Link></li>
+                <li><NavLink to="/brunch" className="nav-links" activeClassName='is-active'>Brunch</NavLink></li>
                 <li><span className="dot"></span></li>
-                <li><Link to="/lunch" className="nav-links">Lunch</Link></li>
+                <li><NavLink to="/lunch" className="nav-links" activeClassName='is-active'>Lunch</NavLink></li>
                 <li><span className="dot"></span></li>
-                <li><Link to="/dinner" className="nav-links">Dinner</Link></li>
+                <li><NavLink to="/dinner" className="nav-links" activeClassName='is-active'>Dinner</NavLink></li>
             </ul>
             {userInfo ? (
                 <div>

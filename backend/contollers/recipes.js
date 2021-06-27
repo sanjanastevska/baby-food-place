@@ -1,6 +1,4 @@
-
 const Recipe = require('../models/recipeModel');
-const { User} = require('../models/userModel');
 
 const newestRecipes = async (_, res, next) => {
     try {

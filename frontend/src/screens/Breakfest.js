@@ -26,7 +26,6 @@ export function Breakfest(props) {
 
 
     const cardEvents = card => {
-        console.log("CARD", card);
         dispatch(detailsRecipe(card._id))
         handleShow()
     }
