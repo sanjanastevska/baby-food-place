@@ -12,7 +12,7 @@ export function Recipes(props) {
     const [preparationTime, setPreparationTime] = useState(0);
     const [numberPeople, setNumberPeople] = useState(0);
     const [description, setDescription] = useState("");
-    const [recipeDesc, setRecipeDesc] = useState("");
+    const [recipe, setRecipe] = useState("");
 
     const [selectedFile, setSelectedFile] = useState("");
 
@@ -38,7 +38,7 @@ export function Recipes(props) {
     const deletedRecipe = useSelector(state => state.deleteRecipe);
     const { success } = deletedRecipe;
 
-
+    
     const deleteRecipeHandler = (id) => {
         dispatch(deleteRecipe(id));
         if (success) {
@@ -60,9 +60,9 @@ export function Recipes(props) {
         e.preventDefault();
 
         if (canCreateRecipe) {
-            dispatch(createRecipe({ title, user: userInfo.user._id, image, category, preparationTime, numberPeople, description, recipeDesc }));
+            dispatch(createRecipe({ title, user: userInfo.user._id, image, category, preparationTime, numberPeople, description, recipe }));
         } else {
-            dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipeDesc }));
+            dispatch(updateRecipe({ id, title, image, category, preparationTime, numberPeople, description, recipe }));
         }
 
         const formData = new FormData();
@@ -82,11 +82,12 @@ export function Recipes(props) {
         }
     };
 
-    useEffect(() => {
+    useEffect((id) => {
         if (successCreate || successUpdate) {
-            props.history.push("/recipes");
+            alert('The recipe is successfully created/edited!');
         }
         dispatch(listUserRecipes(userInfo.user._id));
+        props.history.push("/recipes");
     }, [userInfo.user._id, dispatch, props.history, successCreate, successUpdate]);
 
     const openModelUpdate = (recipe) => {
@@ -99,7 +100,7 @@ export function Recipes(props) {
         setPreparationTime(recipe.preparationTime);
         setNumberPeople(recipe.numberPeople);
         setDescription(recipe.description);
-        setRecipeDesc(recipe.recipe);
+        setRecipe(recipe.recipe);
     }
 
     const openModelCreate = () => {
@@ -111,7 +112,7 @@ export function Recipes(props) {
         setPreparationTime(0);
         setNumberPeople(0);
         setDescription("");
-        setRecipeDesc("");
+        setRecipe("");
     };
 
     return (
@@ -196,9 +197,9 @@ export function Recipes(props) {
                                 type="text"
                                 id="recipe"
                                 placeholder="Enter recipe"
-                                value={recipeDesc}
+                                value={recipe}
                                 required
-                                onChange={e => setRecipeDesc(e.target.value)}
+                                onChange={e => setRecipe(e.target.value)}
                             />
                         </div>
                     </form>

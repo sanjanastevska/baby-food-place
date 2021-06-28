@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { updateUser } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-export function Profile() {
+export function Profile(props) {
 
     const userStatus = useSelector(state => state.userLogin);
     const { userInfo } = userStatus;
@@ -25,9 +26,9 @@ export function Profile() {
         dispatch(updateUser({
             userId: userInfo.user._id,
             firstName, lastName, email, password, birthday, 
-        }));
+        }));  
+        
     };
-
     useEffect(() => {
         setFirstName(firstName);
         setLastName(lastName);
@@ -37,7 +38,8 @@ export function Profile() {
         setRepeatPassword(repeatPassword);
         setBirthday(birthday);
         // setAvatar(avatar);
-    }, [dispatch,birthday, firstName, lastName, email, password, repeatPassword, userInfo._id]);  
+        props.history.push("/profile");
+    }, [dispatch,props.history, birthday, firstName, lastName, email, password, repeatPassword, userInfo._id]);  
 
     return (
         <div className="my-profile">

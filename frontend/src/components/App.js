@@ -28,7 +28,7 @@ export function App() {
           <Route path="/register" component={Register}></Route>
           <Route path="/profile" component={Profile}></Route>
           <Route path="/recipes" component={Recipes}></Route>
-          <Route path="/breakfest" component={Breakfest}></Route>
+          <Route path="/breakfast" component={Breakfest}></Route>
           <Route path="/brunch" component={Brunch}></Route>
           <Route path="/lunch" component={Lunch}></Route>
           <Route path="/dinner" component={Dinner}></Route>

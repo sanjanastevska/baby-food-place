@@ -17,7 +17,7 @@ export function Nav() {
         <nav className="navbar">
             <Link to="/"><img src="/images/logo_color.svg" alt="logo" className="logo" /></Link>
             <ul className="nav-menu">
-                <li><NavLink to="/breakfest" className="nav-links" activeClassName='is-active'>Breakfest </NavLink></li>
+                <li><NavLink to="/breakfast" className="nav-links" activeClassName='is-active'>Breakfast </NavLink></li>
                 <li><span className="dot"></span></li>
                 <li><NavLink to="/brunch" className="nav-links" activeClassName='is-active'>Brunch</NavLink></li>
                 <li><span className="dot"></span></li>

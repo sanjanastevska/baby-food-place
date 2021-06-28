@@ -40,19 +40,19 @@ export function Breakfest(props) {
         setRating(recipe.rating);
         if (successRate) {
             alert('Review submitted successfully.');
-            dispatch(listRecipesByCategory("breakfest"));
+            dispatch(listRecipesByCategory("breakfast"));
         }
     }
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(listRecipesByCategory("breakfest"))
+        dispatch(listRecipesByCategory("breakfast"))
     }, [dispatch]);
 
     return (
         <div className="homeScreen">
             <div className="filter-wrapper">
-                <p className="filter-text">Breakfest</p>
+                <p className="filter-text">Breakfast</p>
                 <hr className="hr-filter" />
             </div>
             <div className="home">

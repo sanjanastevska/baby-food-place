@@ -19,6 +19,7 @@ export function Register() {
             alert('Passwords do not match!');
         }
         dispatch(register(firstName, lastName, email, password, repeatPassword, dateOfBirth));
+        alert("Please, check your inbox!")
     };
 
     return (
