@@ -38,5 +38,21 @@ $ npm start
 - Run http://localhost:3000/recipes
 - Logged in user can create/update a recipe by entering recipe info
 
+## Screens
+
+<img src="frontend/public/images/create-edit.PNG" width="700">
+
+<img src="frontend/public/images/profile.PNG" width="700">
+
+<img src="frontend/public/images/filter.PNG" width="700">
+
+<img src="frontend/public/images/home.PNG" width="700">
+
+<img src="frontend/public/images/list-recipes.PNG" width="700"> 
+
+<img src="frontend/public/images/detail.PNG" width="700">
+
+
+
 
 
