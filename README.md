@@ -1,7 +1,5 @@
 # Baby Food Place Project
-This project was bootstrapped with Create React App. Runs the app in the development mode.
-Open http://localhost:3000 to view it in the browser.
-The page will reload if you make edits.
+Baby Food Place is a web application about listing, creating, updating recipes by user using Node.JS and React.JS technologies. The project is still being developed.
 
 ## Run Locally
 ### 1. Clone repo
