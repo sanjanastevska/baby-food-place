@@ -1,5 +1,6 @@
 # Baby Food Place Project
-Baby Food Place is a web application about listing, creating, updating recipes by user using Node.JS and React.JS technologies. The project is still being developed.
+Baby Food Place is a web application about listing, creating, updating recipes by user using Node.JS and React.JS technologies.
+As store database is used MongoDB with mongoose.
 
 ## Run Locally
 ### 1. Clone repo
