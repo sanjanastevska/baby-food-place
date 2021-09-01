@@ -14,7 +14,6 @@ Download it from here: https://docs.mongodb.com/manual/administration/install-co
 
 ### 3. Run Backend
 ```
-$ cd backend
 $ npm start
 ```
 
