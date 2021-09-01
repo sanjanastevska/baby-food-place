@@ -9,8 +9,8 @@ $ git clone https://github.com/sanjanastevska/baby-food-place.git
 $ cd baby-food-place 
 ```
 
-### 2. Install MongoDB
-Download it from here: https://docs.mongodb.com/manual/administration/install-community/
+### 2. Setup MongoDB
+Create database at https://cloud.mongodb.com or Download it locally from here: https://www.mongodb.com/try/download/community
 
 ### 3. Run Backend
 ```
